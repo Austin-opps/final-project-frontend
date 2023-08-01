@@ -49,7 +49,7 @@
 
 //   const postComment = () => {
 //     const productId = product.id; 
-//     const API_URL = `http://localhost:3000/products/:id/testimonials`;
+//     const API_URL = `http://localhost:3000/products/testimonils`;
 //     const newCommentData = { productId, text: newComment };
 
 //     fetch(API_URL, {
