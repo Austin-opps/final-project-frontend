@@ -1,0 +1,29 @@
+.product-details-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 20px; 
+    align-items: center; 
+  }
+  
+  .similar-products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 20px; 
+  }
+  
+  .similar-product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .similar-product img {
+    max-width: 100%;
+  }
+  
+  .similar-product p {
+    margin: 0; 
+    text-align: center;
+    font-size: 14px;
+  }
+  
