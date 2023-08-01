@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import cologneImage from '../../assets/cologne-image.jpg'
+import userIcon from '../../assets/user-icon.png'
+import lock from '../../assets/lock.png'
+import emailBlack from '../../assets/e-mail-black.png'
+import './signup.css'
 function Signup({onSignup}){
     const[username,setUsername] = useState("")
     const[email,setEmail] = useState("")
@@ -30,31 +35,31 @@ function Signup({onSignup}){
             setErrors(data.errors)
         }
         
-
     }
     return(
         <>
-            <form onSubmit={handleSubmit} className="col-md-4 col-sm-8 col-12 mx-auto border p-4">
+        <div className="row container-fluid">
+         <div className="col-11 col-md-6 col-sm-10 d-flex mx-auto m-5 bg-white signup-card">
+            <form onSubmit={handleSubmit} className="col-md-7 col-sm-7 col-12   p-4">
             <div className="form-group">
-                <label for="Username" >Username</label>
-                <input type="text" className="form-control" id="username" placeholder="Enter Username"  value={username} onChange={(e)=>setUsername(e.target.value)}/>
-               
+                <img src={userIcon} className="logo-img" alt="username" />
+                <input type="text" className="border-bottom-only" id="username" placeholder="enter username"  value={username} onChange={(e)=>setUsername(e.target.value)}/>  
             </div>
             <div className="form-group">
-                <label for="email">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" value={email} onChange={(e)=>setEmail(e.target.value)}/>
+            <img src={emailBlack} alt="email" className="logo-img" />
+                <input type="email" className="border-bottom-only" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=" example@email.com" value={email} onChange={(e)=>setEmail(e.target.value)}/>
             </div>
             <div className="form-group">
-                <label for="password">Password</label>
-                <input type="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
+            <img src={lock} alt="password" className="logo-img" />
+                <input type="password" className="border-bottom-only" id="exampleInputPassword1" placeholder="password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
             </div>
             <div className="form-group">
-                <label for="password_confirmation">Password confirmation</label>
-                <input type="password" className="form-control" id="exampleInputPassword2" placeholder="Password confirmation" value={passwordConfirmation} onChange={(e)=>setPasswordConfirmation(e.target.value)}/>
+            <img src={lock} alt="password-confirmation" className="logo-img" />
+                <input type="password" className="border-bottom-only" id="exampleInputPassword2" placeholder="password confirmation" value={passwordConfirmation} onChange={(e)=>setPasswordConfirmation(e.target.value)}/>
             </div>
             <div className="form-group">
-                <label for="profile_image">Profile Picture</label>
-                <input type="text" className="form-control" id="profilePicture" placeholder="Profile Picture" value={profilePicture} onChange={(e)=>setProfilePicture(e.target.value)}/>
+            <img src={userIcon} alt="profile " className="logo-img" />
+                <input type="text" className="border-bottom-only" id="profilePicture" placeholder="profile picture" value={profilePicture} onChange={(e)=>setProfilePicture(e.target.value)}/>
             </div>
             {errors.length > 0 && (
                             <ul style={{color:"red"}}>
@@ -64,9 +69,14 @@ function Signup({onSignup}){
                             </ul>
                         )}
   
-            <button type="submit" className="btn btn-primary">Submit</button>
-            <a href='/login' className='nav-link col-7 mx-auto'><small>Already have an account ?</small></a>
+            <button type="submit" className="btn btn-primary col-md-10 col-10 col-sm-10">Submit</button>
+            <a href='/login' className='nav-link col-7 mx-auto mt-2'><small>Already have an account ?</small></a>
             </form>
+            <div className="image-container col-md-6 d-sm-block">
+                <img src={cologneImage} className="img-fluid signup-image" alt="signup" />
+            </div>
+         </div>
+        </div>
         </>
     )
 }
