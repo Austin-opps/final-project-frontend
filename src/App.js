@@ -16,13 +16,13 @@ import { useEffect, useState } from 'react';
 function App() {
   const[user,setUser] = useState("")
   
-    useEffect(()=>{
-      fetch('/users')
-      .then((res)=>{
-        if(res.ok){
-          res.json().then((user)=>setUser(user))
-        }
-      })},[])
+    // useEffect(()=>{
+    //   fetch('/users')
+    //   .then((res)=>{
+    //     if(res.ok){
+    //       res.json().then((user)=>setUser(user))
+    //     }
+    //   })},[])
   return (
     <div>
     <Navbar user = {user} logOut={setUser}/>
@@ -32,7 +32,7 @@ function App() {
         <Route exact  path='/' element={<Home />} />
         <Route path='/product' element={<Product />} />
         <Route path='/userProfile' element={<UserProfile />} />
-        <Route path='/singlrProduct' element={<SingleProduct />} />
+        <Route path='/singleProduct' element={<SingleProduct />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
     </Routes>
@@ -43,7 +43,7 @@ function App() {
         <Route path='/signup' element={<Signup  onSignup={setUser}/>} />
         <Route path='/login' element={<Login onLogin={setUser}/>} />
         <Route path='/product' element={<Product />} />
-        <Route path='/singlrProduct' element={<SingleProduct />} />
+        <Route path='/singleProduct' element={<SingleProduct />} />
         <Route path='/adminProfile' element={<AdminProfile />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/checkout' element={<Checkout />} />
