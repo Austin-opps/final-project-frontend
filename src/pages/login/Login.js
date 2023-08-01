@@ -33,11 +33,9 @@ function Login({onLogin}){
             <div>
                 <form onSubmit={handleSubmit} className="col-12 col-md-4 col-sm-8 mx-auto">
                     <div className="form-group">
-                        <label for="exampleInputPassword1">Username</label>
                         <input type="text" className="form-control" id="exampleInputPassword1" placeholder="Username" value={username} onChange={(e)=>setUsername(e.target.value)}/>
                     </div>
                     <div className="form-group">
-                        <label for="exampleInputPassword1">Password</label>
                         <input type="password" className="form-control" id="exampleInputPassword2" placeholder="password"  value={password} onChange={(e)=>setPassword(e.target.value)}/>
                     </div>
                     {error.length > 0 && (
