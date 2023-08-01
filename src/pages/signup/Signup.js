@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import cologneImage from '../../assets/cologne-image.jpg'
+import clothesLine from '../../assets/clothesLine.jpg'
 import userIcon from '../../assets/user-icon.png'
 import lock from '../../assets/lock.png'
 import emailBlack from '../../assets/e-mail-black.png'
@@ -73,7 +73,7 @@ function Signup({onSignup}){
             <a href='/login' className='nav-link col-7 mx-auto mt-2'><small>Already have an account ?</small></a>
             </form>
             <div className="image-container col-md-6 d-sm-block">
-                <img src={cologneImage} className="img-fluid signup-image" alt="signup" />
+                <img src={clothesLine} className="img-fluid signup-image" alt="signup" />
             </div>
          </div>
         </div>
