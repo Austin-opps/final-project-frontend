@@ -1,16 +1,9 @@
-// import React from "react";
-// import Checkout from "../../pages/checkout/Checkout";
-// function Cart(){
-//     return (
-//         <>
-//             <h2>Cart</h2>
-//             <Checkout />
-//         </>
-//     )
-// }
-// export default Cart
+
+
 
 import React, { useState, useEffect } from "react";
+import "./cart.css";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const [cartItems, setCartItems] = useState([]);
@@ -31,24 +24,31 @@ function Cart() {
 
   return (
     <div style={{ minHeight: "500px" }}>
-      <h2>Cart</h2>
+
+      <h2 className="text-center p-2">Cart</h2>
+
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
-        <table>
+        <table className="col-11 col-md-8 col-sm-11 mx-auto">
           <thead>
             <tr style={{ borderBottom: "dotted" }}>
               <th style={{ width: "300px" }}>Name</th>
               <th style={{ width: "300px" }}>Price</th>
               <th style={{ width: "300px" }}>Action</th>
+
+
+              {/* we need to add a column for quantity */}
             </tr>
           </thead>
           <tbody>
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td style={{ width: "300px" }}>
+
                   {item.name ? item.name.substring(0, 20) : ""}
                   {item.name && item.name.length > 20 ? "..." : ""}
+
                 </td>
                 <td style={{ width: "300px" }}>Ksh.{item.price}</td>
                 <td style={{ width: "300px" }}>
@@ -74,7 +74,18 @@ function Cart() {
             </tr>
           </tfoot>
         </table>
-      )}
+      )}{" "}
+      <div className="row justify-content-center p-2">
+      <Link to="/product" exact className = " col-md-4 col-sm-11 mx-auto">
+        <button className="btn btn-primary btn-sm col-11 col-md-2 col-sm-11 mx-auto">
+        <span className="arrow-left">&#9756;</span> Continue Shopping
+        </button>
+        </Link>
+
+        <Link to = "/checkout"exact className="btn btn-primary btn-sm col-11 col-md-1 col-sm-11 mx-auto">
+          Checkout
+        </Link>
+      </div>
     </div>
   );
 }
