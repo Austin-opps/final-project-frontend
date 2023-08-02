@@ -63,10 +63,10 @@ function Login({onLogin}){
                         )}
                         <div className="row">
                             <div className=" col-md-8 mx-auto">
-                                <img className="logo-img" src={fb} alt="facebook" / >
-                                <img className="logo-img" src={ig} alt="facebook" / >
-                                <img className="logo-img" src={tweet} alt="facebook" / >
-                                <img className="logo-img" src={ytube} alt="facebook" / >
+                                <img className="logo-img" src={fb} alt="fb" />
+                                <img className="logo-img" src={ig} alt="ig" />
+                                <img className="logo-img" src={tweet} alt="tweet" />
+                                <img className="logo-img" src={ytube} alt="youtube" />
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary col-11 m-3">Submit</button>
