@@ -8,22 +8,22 @@ import youtube from '../../assets/youtube.png'
 import cart from '../../assets/shopping-cart.png'
 import userIcon from '../../assets/user-icon.png'
 import { NavLink, useNavigate } from "react-router-dom";
+
 import './NavBar.css'
 
-function NavBar({user,logOut}){
+function NavBar({user,setUser}){
     const navigate = useNavigate()
     function handleLogout(){
         fetch('/logout',{
             method: "DELETE"
         })
-        .then(()=>
-        {
-        logOut(null)
+        .then(()=>{
+        setUser()
         navigate('/')
+        console.log('blank');
     })
-        
     }
-
+const count = 0
    
     return(
         <>
@@ -40,7 +40,7 @@ function NavBar({user,logOut}){
         </div>
         <div className="col-md-3 col-sm-4 col-12 mx-auto">
             { user ? (
-                    <p className="text-white "><small>Welcome {user[[0]].name}</small></p>
+                    <p className="text-white "><small>Welcome user</small></p>
             ) : (
                 <p className="text-white"><small>sign in for variety of products from our shop</small></p>
             )}
@@ -72,7 +72,7 @@ function NavBar({user,logOut}){
                         <>
                             <NavLink  className={"nav-link"} to='/userProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> User</NavLink>
                             <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout</NavLink>
-                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /></NavLink>
+                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {count}</NavLink>
                             
                             
                         </>
@@ -81,7 +81,7 @@ function NavBar({user,logOut}){
                             <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
                             <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
                             <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink>
-                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /></NavLink>
+                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {count}</NavLink>
                         </>
                         )}
                         {/* <NavLink  className={"nav-link"} to='/checkout'>Checkout</NavLink>  should checkout be on Navbar, i dont think it should be a component actually*/} 
