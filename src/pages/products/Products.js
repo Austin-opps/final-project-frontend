@@ -28,7 +28,10 @@ const Product = () => {
   // Get the index of the first and last products of the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
 
   return (
     <div>
@@ -66,8 +69,12 @@ const Product = () => {
       </div>
       <div>
         {/* Pagination controls */}
-        <button onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>Previous</button>
-        <button onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>Next</button>
+        <button onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>
+          Previous
+        </button>
+        <button onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>
+          Next
+        </button>
       </div>
     </div>
   );
@@ -77,6 +84,9 @@ const gridContainerStyle = {
   display: "grid",
   gridTemplateColumns: "repeat(4, 1fr)", // Create a grid layout with four columns
   gridGap: "20px",
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))", // Adjusted grid columns to fit the screen size
+  gridGap: "20px",
 };
 
 const productCardStyle = {
@@ -84,6 +94,7 @@ const productCardStyle = {
   padding: "10px",
   textAlign: "center",
   width: "100%", // Adjusted width to take the whole available space within each column
+  maxWidth: "400px", // Set a maximum width for product cardsn
 };
 
 const productLinkStyle = {
@@ -93,7 +104,8 @@ const productLinkStyle = {
 
 const imageStyle = {
   maxWidth: "100%",
-  maxHeight: "200px",
+  maxHeight: "200px", // Set a maximum height for the product images
+  objectFit: "cover", // Maintain aspect ratio and cover the container
 };
 
 export default Product;
