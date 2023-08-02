@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const SingleProduct = () => {
   const [product, setProduct] = useState(null);
   const [comments, setComments] = useState([]);
-  const [commentMessage, setCommentMessage] = useState('');
+  const [commentMessage, setCommentMessage] = useState("");
 
   const { id } = useParams();
 
@@ -12,23 +12,23 @@ const SingleProduct = () => {
     fetch(`/products/${id}`)
       .then((response) => response.json())
       .then((data) => setProduct(data))
-      .catch((error) => console.error('Error fetching product:', error));
+      .catch((error) => console.error("Error fetching product:", error));
 
     fetch(`/testimonials/${id}`)
       .then((response) => response.json())
       .then((data) => setComments(data))
-      .catch((error) => console.error('Error fetching comments:', error));
+      .catch((error) => console.error("Error fetching comments:", error));
   }, [id]);
 
   const addToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(product);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
   const handlePostComment = () => {
-    const userId = JSON.parse(localStorage.getItem('userId')) || null;
-    const name = JSON.parse(localStorage.getItem('name')) || '';
+    const userId = JSON.parse(localStorage.getItem("userId")) || null;
+    const name = JSON.parse(localStorage.getItem("name")) || "";
 
     const newComment = {
       id: comments.length + 1,
@@ -39,11 +39,13 @@ const SingleProduct = () => {
 
     setComments([...comments, newComment]);
 
-    setCommentMessage('');
+    setCommentMessage("");
   };
 
   const handleDeleteComment = (commentId) => {
-    const updatedComments = comments.filter((comment) => comment.id !== commentId);
+    const updatedComments = comments.filter(
+      (comment) => comment.id !== commentId
+    );
     setComments(updatedComments);
   };
 
@@ -61,7 +63,7 @@ const SingleProduct = () => {
         </div>
         <div style={gridItemStyle}>
           <p>{product.description}</p>
-          <p>Price: ${product.price}</p>
+          <p>Price: Ksh.{Math.round(product.price)}</p>
           <button onClick={addToCart}>Add to Cart</button>
           <Link to="/cart">
             <button>View Cart</button>
@@ -76,8 +78,11 @@ const SingleProduct = () => {
               <li key={comment.id}>
                 <p>{comment.message}</p>
                 <p>Posted by: {comment.name}</p>
-                {comment.userId === JSON.parse(localStorage.getItem('userId')) && (
-                  <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                {comment.userId ===
+                  JSON.parse(localStorage.getItem("userId")) && (
+                  <button onClick={() => handleDeleteComment(comment.id)}>
+                    Delete
+                  </button>
                 )}
               </li>
             ))}
@@ -101,19 +106,19 @@ const SingleProduct = () => {
 };
 
 const gridCont = {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr', 
-  gap: '20px',
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "20px",
 };
 
 const gridItemStyle = {
-  padding: '10px',
-  textAlign: 'center',
+  padding: "10px",
+  textAlign: "center",
 };
 
 const imageStyle = {
-  maxWidth: '100%',
-  maxHeight: '200px',
+  maxWidth: "100%",
+  maxHeight: "200px",
 };
 
 export default SingleProduct;
