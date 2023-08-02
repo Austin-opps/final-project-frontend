@@ -73,10 +73,10 @@ function Signup({onSignup}){
                             </ul>
                         )}
             <div className=" col-md-8 mx-auto">
-                <img className="logo-img" src={fb} alt="facebook" / >
-                <img className="logo-img" src={ig} alt="facebook" / >
-                <img className="logo-img" src={tweet} alt="facebook" / >
-                <img className="logo-img" src={ytube} alt="facebook" / >
+                <img className="logo-img" src={fb} alt="facebook" />
+                <img className="logo-img" src={ig} alt="facebook" />
+                <img className="logo-img" src={tweet} alt="facebook" />
+                <img className="logo-img" src={ytube} alt="facebook" />
             </div>
             <button type="submit" className="btn btn-primary col-md-10 col-10 col-sm-10 m-2">Submit</button>
             <a href='/login' className='nav-link col-7 mx-auto mt-2'><small>Already have an account ?</small></a>
