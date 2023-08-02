@@ -1,5 +1,6 @@
 
 
+
 import React, { useState, useEffect } from "react";
 import "./cart.css";
 import { Link } from "react-router-dom";
@@ -23,7 +24,9 @@ function Cart() {
 
   return (
     <div style={{ minHeight: "500px" }}>
+
       <h2 className="text-center p-2">Cart</h2>
+
       {cartItems.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
@@ -33,6 +36,8 @@ function Cart() {
               <th style={{ width: "300px" }}>Name</th>
               <th style={{ width: "300px" }}>Price</th>
               <th style={{ width: "300px" }}>Action</th>
+
+
               {/* we need to add a column for quantity */}
             </tr>
           </thead>
@@ -40,8 +45,10 @@ function Cart() {
             {cartItems.map((item) => (
               <tr key={item.id}>
                 <td style={{ width: "300px" }}>
-                  {item.name.substring(0, 20)}
-                  {item.name.length > 20 ? "..." : ""}
+
+                  {item.name ? item.name.substring(0, 20) : ""}
+                  {item.name && item.name.length > 20 ? "..." : ""}
+
                 </td>
                 <td style={{ width: "300px" }}>Ksh.{item.price}</td>
                 <td style={{ width: "300px" }}>
