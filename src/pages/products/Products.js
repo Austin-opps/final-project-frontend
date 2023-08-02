@@ -36,7 +36,7 @@ const Product = () => {
       </div>
       <div style={gridContainerStyle}>
         {products.map((product) => (
-          <Link to={`/singlrProduct`} key={product.id} style={productLinkStyle}>
+          <Link to={`/products/${product.id}`} key={product.id} style={productLinkStyle}>
             <div style={productCardStyle}>
               <h2>{product.name.substring(0, 30)}{product.name.length > 30 ? '...' : ''}</h2>
               <img src={product.image} alt={product.name} style={imageStyle} />
