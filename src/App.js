@@ -16,20 +16,20 @@ import { useEffect, useState } from 'react';
 function App() {
   const[user,setUser] = useState("")
   
-    // useEffect(()=>{
-    //   fetch('/users')
-    //   .then((res)=>{
-    //     if(res.ok){
-    //       res.json().then((user)=>setUser(user))
-    //     }
-    //   })},[])
+    useEffect(()=>{
+      fetch('/users')
+      .then((res)=>{
+        if(res.ok){
+          res.json().then((user)=>setUser(user))
+        }
+      })},[])
   return (
     <div>
-    <Navbar user = {user} logOut={setUser}/>
+    <Navbar user = {user} setUser={setUser}/>
     <main>
       {user ? (
-        <Routes>
-        <Route exact  path='/' element={<Home />} />
+    <Routes>
+        <Route path='/' element={<Home />} />
         <Route path='/product' element={<Product />} />
         <Route path='/userProfile' element={<UserProfile />} />
         <Route path='/singleProduct' element={<SingleProduct />} />
@@ -39,7 +39,7 @@ function App() {
         
       ) : (
       <Routes>
-        <Route exact  path='/' element={<Home />} />
+        <Route path='/' element={<Home />} />
         <Route path='/signup' element={<Signup  onSignup={setUser}/>} />
         <Route path='/login' element={<Login onLogin={setUser}/>} />
         <Route path='/product' element={<Product />} />

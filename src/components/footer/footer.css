@@ -11,3 +11,10 @@
 .newsletter-form input, .newsletter-form  button{
     border-radius: 0;
 }
+.footer-info li:hover{
+    padding-left: 3px;
+}
+.newsletter-form input:focus{
+    box-shadow: none;
+    /* outline: none; */
+}
