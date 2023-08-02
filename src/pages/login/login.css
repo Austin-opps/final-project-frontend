@@ -1,0 +1,24 @@
+.border-bottom-only{
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 0;
+    max-width: 250px;
+      width: 100%;
+    
+}
+.border-bottom-only:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-bottom: 1px solid black;
+    
+  }
+login-card{
+    height: 400px;
+
+}
+.login-image{
+    object-fit: contain;
+    max-width:100%;
+    max-height:100%;
+}
