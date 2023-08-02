@@ -1,113 +1,113 @@
-// import React, { useEffect, useState } from "react"
 
-// function singleProduct() {
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 
-//     const [cart, setCart] = useState([]);
-//     const [similarProducts, setSimilarProducts] = useState([]);
-//     const [comments, setComments] = useState([]);
-//     const [newComment, setNewComment] = useState("");
+const SingleProduct = () => {
+  const [product, setProduct] = useState(null);
+  const [comments, setComments] = useState([]);
+  const [commentMessage, setCommentMessage] = useState('');
 
-//     useEffect(() => {
-//         const fetchSimilarProducts = async () => {
-//           try {
-//             const categoryId = product.categoryId; 
-//             const API_URL = `http://localhost:3000/products?categoryId=${categoryId}`;
-//             const response = await fetch(API_URL);
-//             const data = await response.json();
-    
-//             setSimilarProducts(data.slice(0, 4)); 
-//           } catch (error) {
-//             console.error('Error fetching similar products:', error);
-//           }
-//         };
-    
-//         fetchSimilarProducts();
+  const { id } = useParams();
 
-//         const fetchComments = async () => {
-//             try {
-//               const productId = product.id; 
-//               const API_URL = `http://localhost:3000/product/:id/testimonials${productId}`;
-//               const response = await fetch(API_URL);
-//               const data = await response.json();
-      
-//               setComments(data);
-//             } catch (error) {
-//               console.error('Error fetching comments:', error);
-//             }
-//           };
-      
-//           fetchComments();
-//       }, [product]);
+  useEffect(() => {
+    fetch(`/products/${id}`)
+      .then((response) => response.json())
+      .then((data) => setProduct(data))
+      .catch((error) => console.error('Error fetching product:', error));
 
-//   const addToCart = () => {
-//     setCart([...cart, product]);
-//   };
+    fetch(`/comments/${id}`)
+      .then((response) => response.json())
+      .then((data) => setComments(data))
+      .catch((error) => console.error('Error fetching comments:', error));
+  }, [id]);
 
-//   const handleNewCommentChange = (event) => {
-//     setNewComment(event.target.value);
-//   };
+  const addToCart = () => {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    cartItems.push(product);
+    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+  };
 
-//   const postComment = () => {
-//     const productId = product.id; 
-//     const API_URL = `http://localhost:3000/products/:id/testimonials`;
-//     const newCommentData = { productId, text: newComment };
+  const handlePostComment = () => {
+    const userId = JSON.parse(localStorage.getItem('userId')) || null;
+    const name = JSON.parse(localStorage.getItem('name')) || ''; 
 
-//     fetch(API_URL, {
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(newCommentData),
-//     })
-//       .then((response) => response.json())
-//       .then((data) => {
-//         setComments(data);
-//         setNewComment(""); // Clear the input field after posting the comment
-//       })
-//       .catch((error) => console.error('Error posting comment:', error));
-//   };
+    const newComment = {
+      id: comments.length + 1,
+      message: commentMessage,
+      userId: userId,
+      name: name, 
+    };
 
-//   return (
-//     <div className="product-details-container">
-//       <div className="product-details">
-//         <h1>{product.name}</h1>
-//         <img src={product.image} alt={product.name} />
-//         <p>{product.description}</p>
-//         <p>Price: ${product.price}</p>
-//         <button onClick={addToCart}>Add to Cart</button>
-//       </div>
+    setComments([...comments, newComment]);
 
-//       <div className="similar-products-grid">
-//         {similarProducts.map((similarProduct) => (
-//           <div key={similarProduct.id} className="similar-product">
-//             <img src={similarProduct.image} alt={similarProduct.name} />
-//             <p>{similarProduct.description.substring(0, 30)}{similarProduct.description.length > 30 ? '...' : ''}</p>
-//           </div>
-//         ))}
-//       </div>
+    setCommentMessage('');
+  };
 
-//       <div className="customer-comments">
-//         <p className="underline-center">What our customers say</p>
-//         <div className="comments-container">
-//           {comments.map((comment) => (
-//             <div key={comment.id} className="comment">
-//               <p>{comment.text}</p>
-//             </div>
-//           ))}
-//         </div>
-//         <div className="new-comment-container">
-//           <input
-//             type="text"
-//             placeholder="Leave a comment"
-//             value={newComment}
-//             onChange={handleNewCommentChange}
-//           />
-//           <button onClick={postComment}>Post Comment</button>
-//         </div>
-//       </div>
-//     </div>
-//   );
+  const handleDeleteComment = (commentId) => {
+    const updatedComments = comments.filter((comment) => comment.id !== commentId);
+    setComments(updatedComments);
+  };
 
-// }
+  if (!product) {
+    return <div>Loading...</div>;
+  }
 
-// export default singleProduct
+  return (
+    <div>
+      <h1>Product Details</h1>
+      <div style={productCardStyle}>
+        <h2>{product.name}</h2>
+        <img src={product.image} alt={product.name} style={imageStyle} />
+        <p>{product.description}</p>
+        <p>Price: ${product.price}</p>
+        <button onClick={addToCart}>Add to Cart</button>
+        <Link to="/cart">
+          <button>View Cart</button>
+        </Link>
+      </div>
+      <div>
+        <h3>What Our Customers Say</h3>
+        {comments.length > 0 ? (
+          <ul>
+            {comments.map((comment) => (
+              <li key={comment.id}>
+                <p>{comment.message}</p>
+                <p>Posted by: {comment.username}</p>
+                {comment.userId === JSON.parse(localStorage.getItem('userId')) && (
+                  <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                )}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p>No comments yet.</p>
+        )}
+      </div>
+      <div>
+        <h3>Post a Comment</h3>
+        <input
+          type="text"
+          placeholder="Your comment..."
+          value={commentMessage}
+          onChange={(e) => setCommentMessage(e.target.value)}
+        />
+        <button onClick={handlePostComment}>Post Comment</button>
+      </div>
+    </div>
+  );
+};
+
+const productCardStyle = {
+  border: '1px solid #ccc',
+  padding: '10px',
+  textAlign: 'center',
+  width: '400px',
+  height: '400px',
+};
+
+const imageStyle = {
+  maxWidth: '100%',
+  maxHeight: '200px',
+};
+
+export default SingleProduct;

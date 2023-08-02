@@ -1,0 +1,19 @@
+/* Product.css */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 400px);
+    grid-gap: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+    width: 400px;
+  }
+  
+  .product-card img {
+    width: 100%;
+  }
+  
