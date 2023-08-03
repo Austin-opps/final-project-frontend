@@ -7,8 +7,10 @@ import fb from '../../assets/facebook1.png'
 import ig from '../../assets/instagram1.png'
 import tweet from '../../assets/twitter1.png'
 import ytube from '../../assets/youtube1.png'
+import { useNavigate } from "react-router-dom";
 import './signup.css'
 function Signup({onSignup}){
+    const nav = useNavigate()
     const[username,setUsername] = useState("")
     const[email,setEmail] = useState("")
     const[password,setPassword] = useState("")
@@ -35,6 +37,7 @@ function Signup({onSignup}){
         if(response.ok){
             onSignup(data)
             console.log('data',data);
+            nav('/')
         }else{
             setErrors(data.errors)
         }
