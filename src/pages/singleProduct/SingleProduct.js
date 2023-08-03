@@ -1,11 +1,10 @@
-
-import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const SingleProduct = () => {
   const [product, setProduct] = useState(null);
   const [comments, setComments] = useState([]);
-  const [commentMessage, setCommentMessage] = useState('');
+  const [commentMessage, setCommentMessage] = useState("");
 
   const { id } = useParams();
 
@@ -13,38 +12,40 @@ const SingleProduct = () => {
     fetch(`/products/${id}`)
       .then((response) => response.json())
       .then((data) => setProduct(data))
-      .catch((error) => console.error('Error fetching product:', error));
+      .catch((error) => console.error("Error fetching product:", error));
 
-    fetch(`/comments/${id}`)
+    fetch(`/testimonials/${id}`)
       .then((response) => response.json())
       .then((data) => setComments(data))
-      .catch((error) => console.error('Error fetching comments:', error));
+      .catch((error) => console.error("Error fetching comments:", error));
   }, [id]);
 
   const addToCart = () => {
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(product);
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
   const handlePostComment = () => {
-    const userId = JSON.parse(localStorage.getItem('userId')) || null;
-    const name = JSON.parse(localStorage.getItem('name')) || ''; 
+    const userId = JSON.parse(localStorage.getItem("userId")) || null;
+    const name = JSON.parse(localStorage.getItem("name")) || "";
 
     const newComment = {
       id: comments.length + 1,
       message: commentMessage,
       userId: userId,
-      name: name, 
+      name: name,
     };
 
     setComments([...comments, newComment]);
 
-    setCommentMessage('');
+    setCommentMessage("");
   };
 
   const handleDeleteComment = (commentId) => {
-    const updatedComments = comments.filter((comment) => comment.id !== commentId);
+    const updatedComments = comments.filter(
+      (comment) => comment.id !== commentId
+    );
     setComments(updatedComments);
   };
 
@@ -55,15 +56,19 @@ const SingleProduct = () => {
   return (
     <div>
       <h1>Product Details</h1>
-      <div style={productCardStyle}>
-        <h2>{product.name}</h2>
-        <img src={product.image} alt={product.name} style={imageStyle} />
-        <p>{product.description}</p>
-        <p>Price: ${product.price}</p>
-        <button onClick={addToCart}>Add to Cart</button>
-        <Link to="/cart">
-          <button>View Cart</button>
-        </Link>
+      <div style={gridCont}>
+        <div style={gridItemStyle}>
+          <h2>{product.name}</h2>
+          <img src={product.image} alt={product.name} style={imageStyle} />
+        </div>
+        <div style={gridItemStyle}>
+          <p>{product.description}</p>
+          <p>Price: Ksh.{Math.round(product.price)}</p>
+          <button onClick={addToCart}>Add to Cart</button>
+          <Link to="/cart">
+            <button>View Cart</button>
+          </Link>
+        </div>
       </div>
       <div>
         <h3>What Our Customers Say</h3>
@@ -72,9 +77,12 @@ const SingleProduct = () => {
             {comments.map((comment) => (
               <li key={comment.id}>
                 <p>{comment.message}</p>
-                <p>Posted by: {comment.username}</p>
-                {comment.userId === JSON.parse(localStorage.getItem('userId')) && (
-                  <button onClick={() => handleDeleteComment(comment.id)}>Delete</button>
+                <p>Posted by: {comment.name}</p>
+                {comment.userId ===
+                  JSON.parse(localStorage.getItem("userId")) && (
+                  <button onClick={() => handleDeleteComment(comment.id)}>
+                    Delete
+                  </button>
                 )}
               </li>
             ))}
@@ -97,17 +105,20 @@ const SingleProduct = () => {
   );
 };
 
-const productCardStyle = {
-  border: '1px solid #ccc',
-  padding: '10px',
-  textAlign: 'center',
-  width: '400px',
-  height: '400px',
+const gridCont = {
+  display: "grid",
+  gridTemplateColumns: "1fr 1fr",
+  gap: "20px",
+};
+
+const gridItemStyle = {
+  padding: "10px",
+  textAlign: "center",
 };
 
 const imageStyle = {
-  maxWidth: '100%',
-  maxHeight: '200px',
+  maxWidth: "100%",
+  maxHeight: "200px",
 };
 
 export default SingleProduct;

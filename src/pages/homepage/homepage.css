@@ -1,0 +1,126 @@
+text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(9, 47, 212, 0.5);
+    padding: 10px;
+    color: red;
+  }
+
+  .title {
+    margin-bottom: 20px; /* Adjust the margin as needed */
+  }
+  .imageContainer {
+    /* flex: 1; */
+    margin-right: 2%;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+  }
+  
+  .centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 10vh; /* This will make sure the container takes up the full viewport height */
+  }
+
+  .full-width-image {
+    width: 100%; /* Make the image cover the whole row */
+    max-height: 500px; /* Let the browser calculate the height to maintain aspect ratio */
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  .image-text {
+    position: absolute; /* Position the text absolutely within the container */
+    bottom: 5px; /* Adjust the distance of the text from the bottom */
+    left: 50%; /* Position the text at the horizontal center of the image */
+    transform: translateX(-50%); /* Center the text horizontally */
+    font-size: 86px; /* Adjust the font size as needed */
+    color: white; /* Set the text color */
+    font-weight: bold; /* Set the font weight if desired */
+    padding: 16px 32px; /* Add padding to the text for better readability */
+  }
+  .gallery-image {
+    width: 12%;
+    height: 30%;
+    margin: 3%;
+    margin-right: 10%; /* Add space between gallery images */
+    margin-bottom: 10px;
+  }
+
+  .image-with-text-container {
+    display: flex; 
+    align-items: center; 
+ }
+
+  .image-with-text-container img {
+    margin-right: 10px; 
+  }
+.small-image {
+  width: 60%; 
+  height: auto; 
+  padding: 0;
+  border: none;
+}
+  .small-image-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .small-image-container img {
+    width: 150px; /* Set your desired width for the image */
+    height: auto; /* Automatically adjust the height while maintaining the aspect ratio */
+    margin-right: 10px; /* Add some space between the image and the text */
+  }
+  
+  .small-image-container .text-container {
+    flex: 1; /* Allow the text container to fill the available space */
+  }
+  
+  .small-image-container p {
+    /* Add any additional styling for the text here */
+    margin: 0; /* Reset any potential margin on the paragraphs */
+  }
+  
+  /* Styles for the email subscription form */
+  .subscribe-form {
+    text-align: center; /* Center the content within the container */
+    margin-top: 20px; /* Add some space between the two sections */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center form elements horizontally */
+  }
+  
+  .subscribe-form h1 {
+    margin-bottom: 10px; /* Add some space between the heading and the form */
+  }
+  
+  .subscribe-form label,
+  .subscribe-form input,
+  .subscribe-form button {
+    margin-bottom: 5px; /* Add some space between form elements */
+  }
+
+  .small-image-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .small-image-container img {
+    width: 150px; /* Set your desired width for the image */
+    height: auto; /* Automatically adjust the height while maintaining the aspect ratio */
+    margin-right: 10px; /* Add some space between the image and the text */
+  }
+  
+  .small-image-container .text-container {
+    flex: 1; /* Allow the text container to fill the available space */
+  }
+  
+  .small-image-container p {
+    /* Add any additional styling for the text here */
+    margin: 0; /* Reset any potential margin on the paragraphs */
+  }
