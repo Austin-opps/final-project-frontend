@@ -51,7 +51,7 @@ function Checkout() {
             <div className="card" style={{ borderRadius: "15px" }}>
               <div className="card-body p-4">
                 <form>
-                  <p>Total Amount: ${totalAmount} </p>
+                  <p>Total Amount: Ksh{totalAmount} </p>
                   <div className="mb-3">
                     <label htmlFor="paymentMode" className="form-label">
                       Select Payment Mode
