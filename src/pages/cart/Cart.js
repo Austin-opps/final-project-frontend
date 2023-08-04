@@ -37,7 +37,6 @@ function Cart() {
               <th style={{ width: "300px" }}>Price</th>
               <th style={{ width: "300px" }}>Action</th>
 
-
               {/* we need to add a column for quantity */}
             </tr>
           </thead>
@@ -74,7 +73,7 @@ function Cart() {
             </tr>
           </tfoot>
         </table>
-      )}{" "}
+      )}
       <div className="row justify-content-center p-2">
       <Link to="/product" exact className = " col-md-4 col-sm-11 mx-auto">
         <button className="btn btn-primary btn-sm col-11 col-md-2 col-sm-11 mx-auto">

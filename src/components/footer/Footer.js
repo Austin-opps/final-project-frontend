@@ -5,8 +5,8 @@ function Footer(){
         <>
         <div className="footer container-fluid pt-5">
             <div className="row">
-                <div className="col-md-6 col-sm-11 col-11">
-                    <h2 className="newsletter">Subscribe for the latest newsletter</h2>
+                <div className="col-md-6 col-sm-11 col-11 ml-2">
+                    <h2 className="newsletter ">Subscribe for the latest <br/> newsletter</h2>
                 </div>
                 <div className="col-md-6 col-sm-11 col-11">
                     <form className="form control d-flex col-md-10 newsletter-form">
