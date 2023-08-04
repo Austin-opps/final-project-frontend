@@ -35,29 +35,29 @@ const Product = () => {
     const navigate  = useNavigate()
   return (
     <div>
-      <div>
-        <input
+      <div className=" p-4 col-8 co-md-4 col-sm-8 mx-auto d-flex justify-content-center">
+        <input className="form-control"
           type="text"
           placeholder="Search products by category or name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="btn border " onClick={handleSearch}>Search</button>
       </div>
       
       <div className="product-container row   d-flex flex-wrap justify-content-center">
         {currentProducts.map((product)=>(
-          <div id="product-card" className="card col-md-2 col-sm-6 col-6 flex-item m-2 ">
+          <div  onClick={()=>navigate(`/products/${product.id}`)} className="card col-md-2 col-sm-3 col-4 flex-item m-2 ">
             <div className="card-image pt-1" id="card-image">
             <img className="img-fluid" src={product.image} alt={product.name}  />
             </div>
-            <div className="card-body p-1 text-center" id="card-body">
-              <h5 className="card-title m-0">
-                {product.name.substring(0, 25)}
+            <div className="card-body p-1 text-center">
+              <p className="card-title m-0 lead">
+                {product.name.substring(0, 30)}
                 {product.name.length > 30 ? "..." : ""}
-              </h5>
-              <p className="price-tag lead card-text m-0"><span className="ksh"><sup>Ksh.</sup></span>{product.price}</p>
-              <button className="btn col-11 shadow bg-success text-white" onClick={()=>navigate(`/products/${product.id}`)}>View Details</button>
+              </p>
+              <p className="lead card-text m-0"><span className="ksh"><sup>Ksh.</sup></span>{product.price}</p>
+              {/* <button className="btn col-11 shadow bg-success text-white">View Details</button> */}
             </div>
           
           </div>
