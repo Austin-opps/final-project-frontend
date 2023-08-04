@@ -14,15 +14,16 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 function App() {
-  const [user, setUser] = useState("");
+  const[user, setUser] = useState('');
 
   useEffect(() => {
     fetch("/users").then((res) => {
       if (res.ok) {
-        res.json().then((user) => setUser(user));
+        res.json().then((user) => setUser(user))
       }
-    });
+    })
   }, []);
+
   return (
     <div>
       <Navbar user={user} setUser={setUser} />

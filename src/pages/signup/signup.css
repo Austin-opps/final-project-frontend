@@ -16,7 +16,7 @@
     margin-top: 10px;
 }
 .signup-image{
-    object-fit: cover;
+    object-fit: contain;
     max-width:100%;
     max-height:100%;
 }

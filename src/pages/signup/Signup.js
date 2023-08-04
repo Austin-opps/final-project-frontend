@@ -84,7 +84,7 @@ function Signup({onSignup}){
             <button type="submit" className="btn btn-primary col-md-10 col-10 col-sm-10 m-2">Submit</button>
             <a href='/login' className='nav-link col-7 mx-auto mt-2'><small>Already have an account ?</small></a>
             </form>
-            <div className="col-md-6 d-sm-block">
+            <div className="col-md-6 d-sm-block ">
                 <img src={clothesLine} className="img-fluid signup-image rounded" alt="signup" />
             </div>
          </div>

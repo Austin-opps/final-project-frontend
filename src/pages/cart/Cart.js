@@ -66,6 +66,7 @@ function Cart() {
               <th style={{ width: "300px" }}>Price</th>
               <th style={{ width: "300px" }}>Quantity</th>
               <th style={{ width: "200px" }}>Action</th>
+
             </tr>
           </thead>
           <tbody>

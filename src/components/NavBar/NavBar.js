@@ -86,8 +86,6 @@ function NavBar({user,setUser}){
                             <img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}
                             </NavLink>
 
-                            
-                            
                         </>
                         ) : (
                         <>
@@ -96,8 +94,8 @@ function NavBar({user,setUser}){
                             <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink>
                             <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink>
                         </>
+
                         )}
-                        {/* <NavLink  className={"nav-link"} to='/checkout'>Checkout</NavLink>  should checkout be on Navbar, i dont think it should be a component actually*/} 
                     </div>
             </div>
             </div>
