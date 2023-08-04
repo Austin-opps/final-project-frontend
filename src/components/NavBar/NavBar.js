@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import telephone from '../../assets/telephone.png'
 import email from '../../assets/email.png'
 import facebook from '../../assets/facebook.png'
@@ -23,7 +23,17 @@ function NavBar({user,setUser}){
         console.log('blank');
     })
     }
-const count = 0
+
+    const [cartItems, setCartItems] = useState([]);
+
+    useEffect(() => {
+      const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      setCartItems(storedCartItems.map(item => ({ ...item, quantity: 1 })));
+    }, []);
+  
+    const getTotalQuantity = () => {
+      return cartItems.reduce((total, item) => total + item.quantity, 0);
+    };
    
     return(
         <>
@@ -72,14 +82,19 @@ const count = 0
                         <>
                             <NavLink  className={"nav-link"} to='/userProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> User</NavLink>
                             <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout</NavLink>
-                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {count}</NavLink>
+                            <NavLink className="nav-link" to="/cart">
+                            <img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}
+                            </NavLink>
+
                         </>
                         ) : (
                         <>
                             <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
                             <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
                             <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink>
-                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> </NavLink>                        </>
+                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink>
+                        </>
+
                         )}
                     </div>
             </div>

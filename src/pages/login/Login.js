@@ -63,9 +63,9 @@ function Login({onLogin}){
                         )}
                         <div className="row">
                             <div className=" col-md-8 mx-auto">
-                                <img className="logo-img" src={fb} alt="fb" />
-                                <img className="logo-img" src={ig} alt="ig" />
-                                <img className="logo-img" src={tweet} alt="tweet" />
+                                <img className="logo-img" src={fb} alt="facebook" />
+                                <img className="logo-img" src={ig} alt="instagram" />
+                                <img className="logo-img" src={tweet} alt="twitter" />
                                 <img className="logo-img" src={ytube} alt="youtube" />
                             </div>
                         </div>
