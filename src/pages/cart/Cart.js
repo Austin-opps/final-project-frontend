@@ -57,9 +57,12 @@ function Cart() {
       <h2 className="text-center p-2">Cart</h2>
 
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <div className="row">
+          <p className="col-5 col-sm-5 col-md-5 mx-auto d-flex justify-content-center">Your cart is empty.</p>
+        </div>
       ) : (
-        <table className="col-11 col-md-8 col-sm-11 mx-auto">
+        <div className="container-fluid row">
+          <table className=" table col-11 col-md-6 col-sm-11 mx-auto border">
           <thead>
             <tr style={{ borderBottom: "dotted" }}>
               <th style={{ width: "300px" }}>Name</th>
@@ -103,21 +106,20 @@ function Cart() {
             </tr>
           </tfoot>
         </table>
+        </div>
       )}
-      <div className="row justify-content-center p-2">
-        <Link to="/product" exact className=" col-md-4 col-sm-11 mx-auto">
-          <button className="btn btn-primary btn-sm col-11 col-md-2 col-sm-11 mx-auto">
+      <div className="row justify-content-evenly mx-auto p-2 border">
+        <div className="col-2 flex-item  text-center"> 
+          <Link  exact to="/product" className="text-white bg-primary p-2 rounded text-decoration-none">
             <span className="arrow-left">&#9756;</span> Continue Shopping
-          </button>
-        </Link>
+            </Link>
+        </div>
 
-        <Link
-          to={{ pathname: "/checkout", search: `?total=${getTotalAmount()}` }}
-          exact
-          className="btn btn-primary btn-sm col-11 col-md-1 col-sm-11 mx-auto"
-        >
+       <div className="col-2 flex-item  text-center">
+       <Link exact to={{ pathname: "/checkout", search: `?total=${getTotalAmount()}` }} className="text-white bg-primary p-2 rounded text-decoration-none ">
           Checkout
         </Link>
+       </div>
       </div>
     </div>
   );

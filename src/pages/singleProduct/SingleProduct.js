@@ -74,8 +74,9 @@ const SingleProduct = () => {
         </div>
         <div  className="col-5 d-flex flex-wrap ">
           {product.galleryThumbnails.map((thumbnail)=>(
-            <div onClick={(e)=>showImageFullScreen(e)} className="product-thumbnails h-10rem border flex-item col-6">
+            <div onClick={(e)=>showImageFullScreen(e)}  className="product-thumbnails h-10rem border flex-item col-6">
               <img className="img-fluid" src={thumbnail.image} alt='sample'/>
+              <div className="text-overlay"> click</div> 
             </div>
           ))
           }

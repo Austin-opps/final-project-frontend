@@ -16,6 +16,7 @@ const ProductCard = ({ product, navigate }) => {
   };
 
   return (
+    //impelements switch image in products
     <div
       onMouseOver={switchImage}
       onMouseLeave={revertToOriginalImage}
@@ -30,7 +31,7 @@ const ProductCard = ({ product, navigate }) => {
         />
       </div>
       <div className="card-body p-1 text-center">
-              <p className="card-title m-0 text-md text-xs lead text-sm text-success">
+              <p className="card-title m-0 text-md text-xs  text-sm text-success">
                 {product.name.substring(0, 30)}
                 {product.name.length > 30 ? "..." : ""}
               </p>
