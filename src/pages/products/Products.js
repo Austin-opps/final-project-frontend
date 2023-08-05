@@ -37,7 +37,7 @@ const Product = () => {
 
  
   return (
-    <div>
+    <div className="container-fluid">
       <div className=" p-4 col-8 co-md-4 col-sm-8 mx-auto d-flex justify-content-center">
         <input className="form-control"
           type="text"

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import ImageFullScreen from "../ImageFullScreen/ImageFullScreen";
 import './singleProduct.css'
 
 const SingleProduct = () => {
   const [product, setProduct] = useState(null);
   const [comments, setComments] = useState([]);
   const [commentMessage, setCommentMessage] = useState("");
+  const[isFullScreen,setIsFullScreen] = useState(false)
 
   const { id } = useParams();
 
@@ -48,9 +50,17 @@ const SingleProduct = () => {
     );
     setComments(updatedComments);
   };
-
   if (!product) {
     return <div>Loading...</div>;
+  }
+  //show inlarge individual images high quality
+  function showImageFullScreen(e){
+    e.preventDefault()
+    setIsFullScreen(true)
+    // console.log(e.target);
+  }
+  function closeImageFullScreen(){
+    setIsFullScreen(false)
   }
 
   return (
@@ -64,13 +74,19 @@ const SingleProduct = () => {
         </div>
         <div  className="col-5 d-flex flex-wrap ">
           {product.galleryThumbnails.map((thumbnail)=>(
-            <div className="product-thumbnails h-10rem border flex-item col-6">
+            <div onClick={(e)=>showImageFullScreen(e)} className="product-thumbnails h-10rem border flex-item col-6">
               <img className="img-fluid" src={thumbnail.image} alt='sample'/>
             </div>
           ))
           }
+          
       </div>
       
+      { isFullScreen && (
+        <ImageFullScreen imageUrl={product.galleryThumbnails[1].image } onClose={closeImageFullScreen} />
+      )
+
+      }
       </div>
       <div className="col-sm-12 col-12 col-md-5">
       <h2>{product.name}</h2>
@@ -88,7 +104,7 @@ const SingleProduct = () => {
      </div>
     </div>
         <div className="product-reviews container mt-3">
-           <div className="row "><h3 className="col-5 mx-auto  font-weight-bolder">What Our Customers Say</h3></div>
+           <div className="row "><h3 className="col-5 text-md text-sm text-xs mx-auto  font-weight-bolder">What Our Customers Say</h3></div>
         <div className="row d-flex justify-content-evenly">
         {comments.length > 0 ? (
           <ul className="bg-white col-6 col-md-3 col-sm-4 flex-item">
