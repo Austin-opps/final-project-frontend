@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import candid from '../../assets/candid.jpg'
 import { useLocation } from "react-router-dom";
 
 function Checkout() {
@@ -45,8 +46,9 @@ function Checkout() {
 
   return (
     <section className="gradient-custom">
-      <div className="container my-5 py-5">
+      <div className="container my-5 py-5 border">
         <div className="row d-flex justify-content-center py-5">
+          {/* form div */}
           <div className="col-md-7 col-lg-5 col-xl-4">
             <div className="card" style={{ borderRadius: "15px" }}>
               <div className="card-body p-4">
@@ -168,6 +170,10 @@ function Checkout() {
                 </form>
               </div>
             </div>
+          </div>
+          {/* image div */}
+          <div className="col-md-5 col-lg-5 col-xl-4">
+                      <img className="img-fluid checkout-image" src={candid} alt="our shop"/>
           </div>
         </div>
       </div>
