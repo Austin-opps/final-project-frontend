@@ -74,7 +74,6 @@ function NavBar({user,setUser}){
                     <div className="nav-item navbar-nav mx-auto">
                         <NavLink  className={"nav-link "} exact to='/'>Home </NavLink>
                         <NavLink  className={"nav-link"} to='/product'>Shop</NavLink>
-                        <NavLink  className={"nav-link"} to='#'>About</NavLink>
                     </div>
                     <div className="nav-item navbar-nav ml-auto">
                         

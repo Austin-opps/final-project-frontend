@@ -39,7 +39,6 @@ const SingleProduct = () => {
     };
 
     setComments([...comments, newComment]);
-
     setCommentMessage("");
   };
 
@@ -57,7 +56,7 @@ const SingleProduct = () => {
   return (
     <div className="container  pt-5">
     <div className="product-details bg-white rounded">
-    <div className="row"><h4>Product Details</h4></div>
+    <div className="row pt-3 pl-3"><h4>Product Details</h4></div>
      <div className="row mt-2">
      <div className="col-sm-12 col-12 col-md-7 d-flex">
         <div  className="col-7 d-flex justify-content-center">
@@ -88,12 +87,11 @@ const SingleProduct = () => {
       </div>
      </div>
     </div>
-      <div>
         <div className="product-reviews container mt-3">
-           <div className="row "><h3 className="col-5 mx-auto">What Our Customers Say</h3></div>
-        </div>
+           <div className="row "><h3 className="col-5 mx-auto  font-weight-bolder">What Our Customers Say</h3></div>
+        <div className="row d-flex justify-content-evenly">
         {comments.length > 0 ? (
-          <ul>
+          <ul className="bg-white col-6 col-md-3 col-sm-4 flex-item">
             {comments.map((comment) => (
               <li key={comment.id}>
                 <p>{comment.message}</p>
@@ -110,7 +108,7 @@ const SingleProduct = () => {
         ) : (
           <p>No comments yet.</p>
         )}
-      </div>
+        </div>
       <div>
         <h3>Post a Comment</h3>
         <input
@@ -121,24 +119,25 @@ const SingleProduct = () => {
         />
         <button onClick={handlePostComment}>Post Comment</button>
       </div>
+     </div>
     </div>
   );
 };
 
-const gridCont = {
-  display: "grid",
-  gridTemplateColumns: "1fr 1fr",
-  gap: "20px",
-};
+// const gridCont = {
+//   display: "grid",
+//   gridTemplateColumns: "1fr 1fr",
+//   gap: "20px",
+// };
 
-const gridItemStyle = {
-  padding: "10px",
-  textAlign: "center",
-};
+// const gridItemStyle = {
+//   padding: "10px",
+//   textAlign: "center",
+// };
 
-const imageStyle = {
-  maxWidth: "100%",
-  maxHeight: "200px",
-};
+// const imageStyle = {
+//   maxWidth: "100%",
+//   maxHeight: "200px",
+// };
 
 export default SingleProduct;
