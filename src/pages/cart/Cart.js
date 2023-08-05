@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from "react";
 import "./cart.css";
+import dustbin from '../../assets/dustbin.png'
 import { Link } from "react-router-dom";
 
 
@@ -62,53 +63,57 @@ function Cart() {
         </div>
       ) : (
         <div className="container-fluid row">
-          <table className=" table col-11 col-md-6 col-sm-11 mx-auto border">
-          <thead>
-            <tr style={{ borderBottom: "dotted" }}>
-              <th style={{ width: "300px" }}>Name</th>
-              <th style={{ width: "300px" }}>Price</th>
-              <th style={{ width: "300px" }}>Quantity</th>
-              <th style={{ width: "200px" }}>Action</th>
+          <div className="col-11 col-md-8 col-sm-11 mx-auto">
+            <table className=" table table-bordered ">
+              <thead>
+                <tr  style={{ borderBottom: "dotted" }}>
+                  <th >Name</th>
+                  <th >Price</th>
+                  <th >Quantity</th>
+                  <th >Action</th>
 
-            </tr>
-          </thead>
-          <tbody>
-            {cartItems.map((item) => (
-              <tr key={item.id}>
-                <td style={{ width: "300px" }}>
-                  {item.name ? item.name.substring(0, 20) : ""}
-                  {item.name && item.name.length > 20 ? "..." : ""}
-                </td>
-                <td style={{ width: "300px" }}>Ksh.{item.price}</td>
-                <td style={{ width: "300px" }}>
-                  <button onClick={() => decreaseQuantity(item.id)}>-</button>
-                  {item.quantity}
-                  <button onClick={() => increaseQuantity(item.id)}>+</button>
-                </td>
-                <td style={{ width: "200px" }}>
-                  <button onClick={() => removeFromCart(item.id)}>Remove</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-          <tfoot>
-            <tr
-              style={{
-                borderTop: "double",
-                fontWeight: "bold",
-                borderBottom: "double",
-              }}
-            >
-              <td colSpan="2" style={{ width: "100px" }}>
-                Total:
-              </td>
-              <td style={{ width: "100px" }}>Ksh.{getTotalAmount()}</td>
-            </tr>
-          </tfoot>
-        </table>
+                </tr>
+              </thead>
+              <tbody>
+                {cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td style={{ width: "300px" }}>
+                      {item.name ? item.name.substring(0, 20) : ""}
+                      {item.name && item.name.length > 20 ? "..." : ""}
+                    </td>
+                    <td style={{ width: "300px" }}>Ksh.{item.price}</td>
+                    <td className="d-flex " style={{ width: "300px" }}>
+                      <button className="btn btn-danger" onClick={() => decreaseQuantity(item.id)}>-</button>
+                      <div className="btn">{item.quantity}</div>
+                      <button className="btn btn-success" onClick={() => increaseQuantity(item.id)}>+</button>
+                    </td>
+                    <td  className="text-center" style={{ width: "200px" }}>
+                      {/* <button className="btn border btn-danger" onClick={() => removeFromCart(item.id)}>Remove</button> */}
+                      <img className="img-fluid btn-delete " onClick={() => removeFromCart(item.id)} src={dustbin} alt="delete"/>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+              <tfoot>
+                <tr
+                  style={{
+                    borderTop: "double",
+                    fontWeight: "bold",
+                    borderBottom: "double",
+                  }}
+                >
+                  <td colSpan="2" style={{ width: "100px" }}>
+                    Total:
+                  </td>
+                  <td colSpan="2"  style={{ width: "100px" }}>Ksh.{getTotalAmount()}</td>
+                  
+                </tr>
+              </tfoot>
+            </table>
+          </div>
         </div>
       )}
-      <div className="row justify-content-evenly mx-auto p-2 border">
+      <div className="row justify-content-evenly mx-auto p-2">
         <div className="col-2 flex-item  text-center"> 
           <Link  exact to="/product" className="text-white bg-primary p-2 rounded text-decoration-none">
             <span className="arrow-left">&#9756;</span> Continue Shopping

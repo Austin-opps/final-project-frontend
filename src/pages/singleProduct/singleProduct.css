@@ -27,7 +27,6 @@
     font-size: 14px;
   }
 .product-thumbnails{
-  border: 1px solid red;
   max-height: 150px;
   object-fit: cover;
   position: relative;
