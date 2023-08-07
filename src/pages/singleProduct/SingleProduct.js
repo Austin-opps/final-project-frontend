@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import './singleProduct.css'
 
 const SingleProduct = () => {
   const [product, setProduct] = useState(null);
@@ -11,7 +12,7 @@ const SingleProduct = () => {
   useEffect(() => {
     fetch(`/products/${id}`)
       .then((response) => response.json())
-      .then((data) => setProduct(data))
+      .then((data) => {setProduct(data) ;console.log(data)})
       .catch((error) => console.error("Error fetching product:", error));
 
     fetch(`/testimonials/${id}`)
@@ -54,24 +55,43 @@ const SingleProduct = () => {
   }
 
   return (
-    <div>
-      <h1>Product Details</h1>
-      <div style={gridCont}>
-        <div style={gridItemStyle}>
-          <h2>{product.name}</h2>
-          <img src={product.image} alt={product.name} style={imageStyle} />
+    <div className="container  pt-5">
+    <div className="product-details bg-white rounded">
+    <div className="row"><h4>Product Details</h4></div>
+     <div className="row mt-2">
+     <div className="col-sm-12 col-12 col-md-7 d-flex">
+        <div  className="col-7 d-flex justify-content-center">
+          <img className="img-fluid" src={product.image} alt={product.name}/>
         </div>
-        <div style={gridItemStyle}>
+        <div  className="col-5 d-flex flex-wrap ">
+          {product.galleryThumbnails.map((thumbnail)=>(
+            <div className="product-thumbnails h-10rem border flex-item col-6">
+              <img className="img-fluid" src={thumbnail.image} alt='sample'/>
+            </div>
+          ))
+          }
+      </div>
+      
+      </div>
+      <div className="col-sm-12 col-12 col-md-5">
+      <h2>{product.name}</h2>
+        <div className="row">
           <p>{product.description}</p>
-          <p>Price: Ksh.{Math.round(product.price)}</p>
-          <button onClick={addToCart}>Add to Cart</button>
+          <p className="lead">Price: <span className="ksh"><sub>KES.</sub>{Math.round(product.price)}</span></p>
+          <div className="col-12 d-flex justify-content-evenly">
+          <button className="btn btn-success border shadow" onClick={addToCart}>Add to Cart</button>
           <Link to="/cart">
-            <button>View Cart</button>
+            <button className="btn  btn-danger shadow ">View Cart</button>
           </Link>
+          </div>
         </div>
       </div>
+     </div>
+    </div>
       <div>
-        <h3>What Our Customers Say</h3>
+        <div className="product-reviews container mt-3">
+           <div className="row "><h3 className="col-5 mx-auto">What Our Customers Say</h3></div>
+        </div>
         {comments.length > 0 ? (
           <ul>
             {comments.map((comment) => (
