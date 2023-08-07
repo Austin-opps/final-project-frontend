@@ -1,16 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
 .landing-image{
+  padding-top: 20px;
+  height: 400px;
+  background-color: #ff00008a;
     background-image: url("../../assets/bigPic.jpeg");
-    object-fit: contain;
-    max-width: 100%;
-    max-height: 100%;
     background-size: cover;
-  background-repeat: no-repeat;
+    background-repeat: no-repeat;
   background-position: 200px 65% ;
+  /* background-blend-mode: lighten; */
   
 }
-
-.jumbotron{
-    border: 1px solid red;
-    
+.intro-text h1{
+  font-family: 'Playfair Display', serif;
+  font-weight: 500;
 }
+.shop-btn{
+  border-radius: 30px;
+  border: 1px solid black;
+  color: black;
 
+}
+.categories{
+  height: 300px;
+  width:  200px;
+}
+.category-img{
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+#home-card{
+  border-radius: 25px
+}
+#home-card img{
+  border-radius: 0 0 25px 25px;
+}
+#home-card img:hover{
+  padding: 5px
+  
+}
+/* footer */
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+.footer{
+        background-color: #6c757d;
+        padding: 5px;  
+        color: white;
+}
+.newsletter{
+    font-family: 'Gloock', serif;
+    font-size: 45px;
+}
+.newsletter-form input, .newsletter-form  button{
+    border-radius: 0;
+}
+.footer-info li:hover{
+    padding-left: 3px;
+}
+.newsletter-form input:focus{
+    box-shadow: none;
+    /* outline: none; */
+}
