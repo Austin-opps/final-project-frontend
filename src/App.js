@@ -8,7 +8,6 @@ import AdminProfile from "./pages/adminProfile/AdminProfile";
 import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useEffect, useState } from "react";
@@ -50,7 +49,6 @@ function App() {
           </Routes>
         )}
       </main>
-      <Footer />
     </div>
   );
 }
