@@ -141,20 +141,5 @@ const SingleProduct = () => {
   );
 };
 
-// const gridCont = {
-//   display: "grid",
-//   gridTemplateColumns: "1fr 1fr",
-//   gap: "20px",
-// };
-
-// const gridItemStyle = {
-//   padding: "10px",
-//   textAlign: "center",
-// };
-
-// const imageStyle = {
-//   maxWidth: "100%",
-//   maxHeight: "200px",
-// };
 
 export default SingleProduct;

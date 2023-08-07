@@ -30,7 +30,12 @@ const Product = () => {
   // Get the index of the first and last products of the current page
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+
+
   
   //set route to single product
     const navigate  = useNavigate()
@@ -62,10 +67,12 @@ const Product = () => {
         <button className="btn shadow border btn-dark" onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>Previous</button>
         <button className="btn shadow border btn-dark" onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>Next</button>
         </div>
+
       </div>
     </div>
   );
 };
+
 
 // const gridContainerStyle = {
 //   display: "grid",
@@ -85,6 +92,7 @@ const Product = () => {
 //   textDecoration: "none",
 //   color: "inherit",
 // };
+
 
 // const imageStyle = {
 //   maxWidth: "100%",
