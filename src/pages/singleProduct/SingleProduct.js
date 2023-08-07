@@ -128,7 +128,7 @@ const SingleProduct = () => {
 const gridCont = {
   display: "grid",
   gridTemplateColumns: "1fr 1fr",
-  gap: "20px",
+  gap: "10px",
 };
 
 const gridItemStyle = {
