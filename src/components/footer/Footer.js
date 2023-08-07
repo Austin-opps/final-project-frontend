@@ -10,12 +10,12 @@ function Footer(){
                 </div>
                 <div className="col-md-6 col-sm-11 col-11">
                     <form className="form control d-flex col-md-10 newsletter-form">
-                        <input className="p-2 form-control " type="text" placeholder="your email" />
+                        <input className="p-2 form-control " type="text" placeholder="Your email" />
                         <button type="submit" className="btn p-2 btn-primary">Subscribe</button>
                     </form>
                 </div>
             </div>
-            <div className="row text-white bg-black p-3">
+            <div className="row text-white bg-dark p-3">
                 <div className="col-md-3 col-sm-2 col=4">
                     <ul className="list-unstyled footer-info">
                         <li>Company info</li>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
 import './products.css'
 
 const Product = () => {
@@ -38,8 +39,10 @@ const Product = () => {
   
   //set route to single product
     const navigate  = useNavigate()
+
+ 
   return (
-    <div>
+    <div className="container-fluid">
       <div className=" p-4 col-8 co-md-4 col-sm-8 mx-auto d-flex justify-content-center">
         <input className="form-control"
           type="text"
@@ -52,33 +55,19 @@ const Product = () => {
       
       <div className="product-container row   d-flex flex-wrap justify-content-center">
         {currentProducts.map((product)=>(
-          <div  onClick={()=>navigate(`/products/${product.id}`)} className="card col-md-2 col-sm-3 col-4 flex-item m-2 ">
-            <div className="card-image pt-1" id="card-image">
-            <img className="img-fluid" src={product.image} alt={product.name}  />
-            </div>
-            <div className="card-body p-1 text-center">
-              <p className="card-title m-0 lead">
-                {product.name.substring(0, 30)}
-                {product.name.length > 30 ? "..." : ""}
-              </p>
-              <p className="lead card-text m-0"><span className="ksh"><sup>Ksh.</sup></span>{product.price}</p>
-              {/* <button className="btn col-11 shadow bg-success text-white">View Details</button> */}
-            </div>
-          
-          </div>
+          <ProductCard key={product.id} product={product} navigate={navigate} />
         )) 
         }
      </div>
      {/* bootstrap cards */}
 
-      <div>
+      <div className="row p-5">
         {/* Pagination controls */}
-        <button onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>
-          Previous
-        </button>
-        <button onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>
-          Next
-        </button>
+        <div className="col-5 mx-auto d-flex justify-content-center">
+        <button className="btn shadow border btn-dark" onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>Previous</button>
+        <button className="btn shadow border btn-dark" onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>Next</button>
+        </div>
+
       </div>
     </div>
   );
