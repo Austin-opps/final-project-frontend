@@ -6,11 +6,15 @@ import discount1 from '../../assets/discount1.jpg'
 import discount2 from '../../assets/discount2.jpg'
 import discount3 from '../../assets/discount3.jpg'
 import shoe from '../../assets/shoe.jpeg'
-import polo from '../../assets/polo.jpg'
+import polo from '../../assets/polo.png'
+import WoolOvers from '../../assets/WoolOvers.jpg'
 import hm from '../../assets/h&m.png'
 import dolce from '../../assets/dolce&gabana.png'
+import { useNavigate } from "react-router-dom";
 
 function Body() {
+
+  const navigate = useNavigate()
   return (
     <>
     <div className="container-fluid">
@@ -21,7 +25,7 @@ function Body() {
             <h1>Welcome to EasyMart Collections.</h1>
             <p>EasyMart is a one stop shop for all your fashion needs.</p>
             <div className="d-flex justify-content-center">
-            <button className="shop-btn flex-item p-3">Shop Now</button>
+            <button className="shop-btn flex-item p-3" onClick={()=>(navigate('/product'))}>Shop Now</button>
             </div>
           </div>
         </div>
@@ -46,13 +50,14 @@ function Body() {
       <section className="container-fluid">
         <div className="row">
           <div className="col-11 text-center mt-5 mb-5">
-            <h4>Choose by Brand</h4>
+            <h4>Brands</h4>
             <hr className="col-2 mx-auto  my-4"></hr>
           </div>
           <div className="brands-div d-flex justify-content-evenly flex-wrap">
             <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={polo} alt="brand" /></div>
             <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={hm} alt="brand" /></div>
             <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={dolce} alt="brand" /></div>
+            <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={WoolOvers} alt="brand" /></div>
           {/* <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={polo} alt="brand" /></div> */}
           </div>
         </div>

@@ -44,7 +44,7 @@
 #home-card img:hover{
   padding: 5px
 }
-.brands-div{
+.brands-div div{
   height: 80px;
   border: 1px solid red;
 }

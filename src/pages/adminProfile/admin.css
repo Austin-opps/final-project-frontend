@@ -1,5 +1,5 @@
 /* Product card styles */
-.product-card {
+.admin-product-card {
     margin: 1rem;
     border: 1px solid #020101;
     padding: 20px;
@@ -9,17 +9,17 @@
     max-width: 50%;
   }
   
-  .product-card h2 {
+  .admin-product-card h2 {
     font-size: 2.5rem;
     margin-bottom: 10px;
   }
   
-  .product-card p {
+  .admin-product-card p {
     font-size: 1rem;
     margin: 8px 0;
   }
   
-  .product-card img {
+  .admin-product-card img {
     justify-self: center;
     padding: 1rem;
     margin-left: 35%;
@@ -35,7 +35,7 @@
     align-items: flex-start;
   }
   
-  .product-card,
+  .admin-product-card,
   .update-form {
     flex-basis: calc(50% - 20px);
     margin: 10px;

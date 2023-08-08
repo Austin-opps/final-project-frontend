@@ -38,7 +38,7 @@ const ProductCard = ({ product, navigate }) => {
               </p>
               <p className="lead card-text m-0"><span className="ksh"><sup>Ksh.</sup></span>{product.price}</p>
               {/* <button className="btn col-11 shadow bg-success text-white">View Details</button> */}
-            </div>
+      </div>
     </div>
   );
 };
