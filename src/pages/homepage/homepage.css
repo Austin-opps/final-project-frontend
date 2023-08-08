@@ -1,16 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;900&display=swap');
 .landing-image{
-    background-image: url("../../assets/bigPic.jpeg");
-    object-fit: contain;
-    max-width: 100%;
-    max-height: 100%;
-    background-size: cover;
+  padding-top: 20px;
+  height: 400px;
+  background-color: #ff00008a;
+  background-image: url("../../assets/manwithbags.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
-  background-position: 200px 65% ;
+  background-position: 50%; 
+  /* background-blend-mode: lighten; */
   
 }
-
-.jumbotron{
-    border: 1px solid red;
-    
+.intro-text h1{
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  font-size: 60px;
 }
+.intro-text p{
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 20px;
+}
+.shop-btn{
+  border-radius: 30px;
+  border: 1px solid black;
+  color: black;
 
+}
+.categories{
+  height: 300px;
+  width:  200px;
+}
+.category-img{
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+}
+#home-card{
+  border-radius: 25px
+}
+#home-card img{
+  border-radius: 0 0 25px 25px;
+}
+#home-card img:hover{
+  padding: 5px
+}
+.brands-div{
+  height: 80px;
+  border: 1px solid red;
+}
+.brands-div div img{
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+/* footer */
+@import url('https://fonts.googleapis.com/css2?family=Gloock&display=swap');
+.footer{
+  padding: 5px; 
+}
+.newsletter{
+    font-family: 'Gloock', serif;
+    font-size: 45px;
+}
+.newsletter-form input, .newsletter-form  button{
+    border-radius: 0;
+}
+.footer-info li:hover{
+    padding-left: 3px;
+}
+.newsletter-form input:focus{
+    box-shadow: none;
+    /* outline: none; */
+}
