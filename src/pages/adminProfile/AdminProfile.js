@@ -126,7 +126,7 @@ function AdminProfile() {
         <p>Product not available</p>
       ) : (
         <>
-          <div className="product-card">
+          <div className="admin-product-card">
             <h2>{productData.name}</h2>
             <p><strong>Price:</strong> {productData.price}</p>
             <p><strong>Category:</strong> {productData.category}</p>
