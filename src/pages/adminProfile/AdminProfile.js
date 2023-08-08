@@ -116,12 +116,16 @@ function AdminProfile() {
   };
   return (
     <div>
+      <div className="row">
+        <div className="col-11 col-md-8 col-sm-10 text-center mx-auto">
       <input
         type="text"
         placeholder="Enter Product ID"
         value={id}
         onChange={(e) => setId(e.target.value)}
       />
+      </div>
+      <div className="col-11 col-md-6 col-sm-10">
       {!productData ? (
         <p>Product not available</p>
       ) : (
@@ -136,13 +140,16 @@ function AdminProfile() {
           </div>
         </>
       )}
+      </div>
+      
+      <div className="col-11 col-md-6 col-sm-10">
       {!productData ? (
         <p>Product not available</p>
       ) : (
         <>
-          <form className="update-form">
+          <form className="update-form text-white">
             {/* Input fields for updating data */}
-            <div className="form-row">
+            <div className="form-row ">
               <label>New Product Name:</label>
               <input
                 type="text"
@@ -183,7 +190,9 @@ function AdminProfile() {
               />
             </div>
             {/* Add more input fields for other properties */}
-            <button
+            <div className="row d-flex justify-content-evenly ">
+              <div className="col-4 col-md-4 flex-item">
+            <button 
               onClick={handleUpdate}
               className={`admin-button ${
                 isUpdateButtonDisabled ? "inactive-button" : ""
@@ -192,6 +201,8 @@ function AdminProfile() {
             >
               Update Product
             </button>
+            </div>
+            <div className="col-4 col-md-4 flex-item">
             <button
               onClick={handleDelete}
               className={`admin-button ${
@@ -201,11 +212,20 @@ function AdminProfile() {
             >
               Delete Product
             </button>
+            </div>
+            </div>
           </form>
         </>
       )}
-      <div>
-        <h2>Create a New Product</h2>
+      </div>
+      </div>
+      <div className="container">
+        <div className="row ">
+          <div className="col-11 col-md-8 col-sm-10 text-center mx-auto">
+            <h2>Create a new product</h2>
+          </div>
+          <div className="col-11 col-md-8 col-sm-10 mx-auto">
+          
         <form>
           <label>Name:</label>
           <input
@@ -239,14 +259,27 @@ function AdminProfile() {
               setNewProduct({ ...newProduct, image: e.target.value })
             }
           />
+          <div className="row mb-5">
+            <div className="col-11 col-md-8 col-sm-10  ">
           <label>Description:</label>
-          <textarea
+          {/* <textarea className="w-100"
             value={newProduct.description}
             onChange={(e) =>
               setNewProduct({ ...newProduct, description: e.target.value })
+
             }
-          />
+          /> */}
+          <textarea className="form-control"
+          value={newProduct.description}
+            onChange={(e) =>
+              setNewProduct({ ...newProduct, description: e.target.value })
+
+            }
+                  />
+               
+          </div>
           {/* Add more input fields for other properties */}
+          <div className="col-3 col-md-3 col-sm-3  ">
           <button
             onClick={handleCreate}
             className={`admin-button ${
@@ -255,8 +288,13 @@ function AdminProfile() {
             disabled={isCreateButtonDisabled}
           >
             Create Product
-          </button>{" "}
+          </button>
+          </div>
+          </div>
         </form>
+            </div>
+          </div>
+        
       </div>
     </div>
   );
