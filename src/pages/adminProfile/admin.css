@@ -1,4 +1,4 @@
-/* Product card styles */
+Product card styles
 .admin-product-card {
     margin: 1rem;
     border: 1px solid #020101;
@@ -46,8 +46,8 @@
     border-radius: 1rem;
     margin: 10rem;
     padding: 2rem;
-    background: #000;
-    max-width: 50%;
+    background: #fff;
+    max-width: 100%;
     display: grid;
     justify-content: center;
   }
