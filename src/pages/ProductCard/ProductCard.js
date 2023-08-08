@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './ProductCard.css'
 
 const ProductCard = ({ product, navigate }) => {
   const [isFirstImage, setIsFirstImage] = useState(true);
@@ -23,9 +24,9 @@ const ProductCard = ({ product, navigate }) => {
       onClick={() => navigate(`/products/${product.id}`)}
       className="card product-card col-md-2 col-sm-3 col-4 flex-item m-2"
     >
-      <div className="card-image pt-1" id="card-image">
+      <div className="product-card-image text-center">
         <img
-          className="img-fluid"
+          className="img-fluid img "
           src={isFirstImage ? product.galleryThumbnails[0].image : product.galleryThumbnails[1].image}
           alt={isFirstImage ? "Image 1" : "Image 2"}
         />

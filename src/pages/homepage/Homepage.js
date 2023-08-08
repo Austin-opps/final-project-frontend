@@ -6,6 +6,9 @@ import discount1 from '../../assets/discount1.jpg'
 import discount2 from '../../assets/discount2.jpg'
 import discount3 from '../../assets/discount3.jpg'
 import shoe from '../../assets/shoe.jpeg'
+import polo from '../../assets/polo.jpg'
+import hm from '../../assets/h&m.png'
+import dolce from '../../assets/dolce&gabana.png'
 
 function Body() {
   return (
@@ -14,7 +17,7 @@ function Body() {
       {/* header */}
       <div className="landing-image" >
         <div className="row pt-5 ">
-          <div className="col-md-6 col-sm-12 col-12 p-5 intro-text">
+          <div className="col-md-7 col-sm-12 col-12 p-5 intro-text text-white text-bold">
             <h1>Welcome to EasyMart Collections.</h1>
             <p>EasyMart is a one stop shop for all your fashion needs.</p>
             <div className="d-flex justify-content-center">
@@ -25,10 +28,10 @@ function Body() {
       </div>
       <section>
         {/* content */}
-       
         <div className="row container-fluid">
         <div className="col-11 text-center mt-5 mb-5">
           <h4>Top Categories</h4>
+          <hr className="col-2 mx-auto  my-4"></hr>
         </div>
         <div className=" col-12">
           <div className="row container-fluid d-flex justify-content-around  mx-auto border">
@@ -44,19 +47,20 @@ function Body() {
         <div className="row">
           <div className="col-11 text-center mt-5 mb-5">
             <h4>Choose by Brand</h4>
+            <hr className="col-2 mx-auto  my-4"></hr>
           </div>
-          <div className="d-flex justify-content-evenly flex-wrap">
-          <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><h4>Denim</h4></div>
-          <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><h4>outerwear</h4></div>
-          <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><h4>Brand 3</h4></div>
-          <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><h4>Brand 4</h4></div>
-
+          <div className="brands-div d-flex justify-content-evenly flex-wrap">
+            <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={polo} alt="brand" /></div>
+            <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={hm} alt="brand" /></div>
+            <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={dolce} alt="brand" /></div>
+          {/* <div className="col-md-2 col-sm-2 col-2 flex-item border m-2 rounded p-2"><img className="img-fluid" src={polo} alt="brand" /></div> */}
           </div>
         </div>
       </section>
       <section className="container-fluid mb-5">
       <div className="col-11 text-center mt-5 mb-5">
           <h4>What we have on offer</h4>
+          <hr className="col-2 mx-auto  my-4"></hr>
         </div>
        <div className="row d-flex justify-content-center">
         {/* cards */}
@@ -70,7 +74,7 @@ function Body() {
                   <p>Discover our line of size-inclusive essentials across basics, dresses, denim, outerwear, and more</p>
                 </div>
               </div>
-              <div className="card-image">
+              <div className="card-img">
                 <img className="img-fluid" src={discount1} alt="clothes"/>
               </div>
             </div>
@@ -123,7 +127,8 @@ function Body() {
                     </form>
                 </div>
             </div>
-            <div className="row text-white bg-dark p-3">
+            <hr></hr>
+            <div className="row p-3">
                 <div className="col-md-3 col-sm-2 col=4">
                     <ul className="list-unstyled footer-info">
                         <li>Company info</li>

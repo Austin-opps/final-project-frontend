@@ -37,31 +37,31 @@ function NavBar({user,setUser}){
    
     return(
         <>
-        <div className="row bg-black mx-auto">
-        <div class="col-md-4 col-sm-6 col-12 d-flex">
-            <div class="d-flex align-items-center col-md-6 col-sm-6 col-12 ">
-                <img src={telephone} class="img-fluid telephone logo-img" alt="phone number" />
-                <div><p className="pt-1 mb-0 text-white">(+254) 710 605 821</p></div>
+        <div className="row bg-black mx-auto info-bar">
+            <div class="col-md-4 col-sm-6 col-12 d-flex">
+                <div class="d-flex align-items-center col-md-6 col-sm-6 col-12 ">
+                    <img src={telephone} class="img-fluid telephone logo-img" alt="phone number" />
+                    <div><p className=" mb-0 text-white">(+254) 710 605 821</p></div>
+                </div>
+                <div class="d-flex align-items-center col-md-6 col-sm-6 col-12">
+                    <img src={email} class="img-fluid telephone logo-img" alt="phone number" />
+                    <p className=" mb-0 text-white">easymart@example.com</p>
+                </div>
             </div>
-            <div class="d-flex align-items-center col-md-6 col-sm-6 col-12">
-                <img src={email} class="img-fluid telephone logo-img" alt="phone number" />
-                <p className=" mb-0 text-white">easymart@example.com</p>
+            <div className="col-md-3 col-sm-4 col-12 mx-auto">
+                { user ? (
+                        <p className="text-white "><small>Welcome user</small></p>
+                ) : (
+                    <p className="text-white"><small>sign in for variety of products from our shop</small></p>
+                )}
+                
             </div>
-        </div>
-        <div className="col-md-3 col-sm-4 col-12 mx-auto">
-            { user ? (
-                    <p className="text-white "><small>Welcome user</small></p>
-            ) : (
-                <p className="text-white"><small>sign in for variety of products from our shop</small></p>
-            )}
-            
-        </div>
             <div className="col-md-3 col-sm-4 col-12 d-flex">
                 <p className="text-white pt-2 mb-0 ">Follow us:</p>
-                    <img className="logo-img" src={facebook}  alt="" />
-                    <img className="logo-img" src={instagram} alt="" />
-                    <img className="logo-img" src={twitter}  alt="" />
-                    <img className="logo-img" src={youtube}  alt="" />
+                    <img className="logo-img" src={facebook}  alt="facebook" />
+                    <img className="logo-img" src={instagram} alt="instagram" />
+                    <img className="logo-img" src={twitter}  alt="twitter" />
+                    <img className="logo-img" src={twitter}  alt="twitter" />
             </div>
         </div>
         <nav className="navbar navbar-expand-lg navbar-expand-md">
