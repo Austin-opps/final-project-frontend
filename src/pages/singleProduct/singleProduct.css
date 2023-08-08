@@ -26,4 +26,32 @@
     text-align: center;
     font-size: 14px;
   }
-  
+.product-thumbnails{
+  max-height: 150px;
+  object-fit: cover;
+  position: relative;
+}
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  display: none;
+}
+
+.product-thumbnails:hover .text-overlay {
+  display: block;
+}
+.product-thumbnails img{
+  object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+.ksh{
+  font-weight: bold;
+}
