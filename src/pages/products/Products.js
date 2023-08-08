@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ProductCard from "../ProductCard/ProductCard";
-import './products.css'
+// import './products.css'
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -53,7 +53,7 @@ const Product = () => {
         <button className="btn border " onClick={handleSearch}>Search</button>
       </div>
       
-      <div className="product-container row   d-flex flex-wrap justify-content-center">
+      <div className="product-container row d-flex flex-wrap justify-content-center">
         {currentProducts.map((product)=>(
           <ProductCard key={product.id} product={product} navigate={navigate} />
         )) 
@@ -73,30 +73,5 @@ const Product = () => {
   );
 };
 
-
-// const gridContainerStyle = {
-//   display: "grid",
-//   gridTemplateColumns: "repeat(4, 1fr)", // Create a grid layout with four columns
-//   gridGap: "20px",
-// };
-
-// const productCardStyle = {
-//   backgroundColor:"white",
-//   border: "1px solid #ccc",
-//   padding: "10px",
-//   textAlign: "center",
-//   width: "100%", // Adjusted width to take the whole available space within each column
-// };
-
-// const productLinkStyle = {
-//   textDecoration: "none",
-//   color: "inherit",
-// };
-
-
-// const imageStyle = {
-//   maxWidth: "100%",
-//   maxHeight: "200px",
-// };
 
 export default Product;
