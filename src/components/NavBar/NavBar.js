@@ -11,7 +11,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import './NavBar.css'
 
-function NavBar({user,setUser}){
+function NavBar({user,setUser, admin,setAdmin}){
     const navigate = useNavigate()
     function handleLogout(){
         fetch('/logout',{
@@ -19,6 +19,7 @@ function NavBar({user,setUser}){
         })
         .then(()=>{
         setUser()
+        setAdmin()
         navigate('/')
         console.log('blank');
     })
@@ -61,7 +62,7 @@ function NavBar({user,setUser}){
                     <img className="logo-img" src={facebook}  alt="facebook" />
                     <img className="logo-img" src={instagram} alt="instagram" />
                     <img className="logo-img" src={twitter}  alt="twitter" />
-                    <img className="logo-img" src={twitter}  alt="twitter" />
+                    <img className="logo-img" src={youtube}  alt="youtube" />
             </div>
         </div>
         <nav className="navbar navbar-expand-lg navbar-expand-md">
@@ -88,13 +89,26 @@ function NavBar({user,setUser}){
                         </>
                         ) : (
                         <>
-                            <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
+                            {/* <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink> */}
                             <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
                             <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink>
-                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink>
+                            {/* <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink> */}
                         </>
 
-                        )}
+                        )} 
+                        { admin ? (
+                            <>
+                                <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
+                                <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout</NavLink>
+                            </>
+                        ) : (
+
+                        
+                            <>
+                                {/* <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
+                                <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink> */}
+                            </>
+                       ) }
                     </div>
             </div>
             </div>

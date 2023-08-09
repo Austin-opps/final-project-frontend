@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 
 function App() {
   const[user, setUser] = useState('');
+  const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
     fetch("/users").then((res) => {
@@ -25,7 +26,7 @@ function App() {
 
   return (
     <div>
-      <Navbar user={user} setUser={setUser} />
+      <Navbar user={user} setUser={setUser} admin={admin} setAdmin={setAdmin} />
       <main>
         {user ? (
           <Routes>
@@ -43,9 +44,22 @@ function App() {
             <Route path="/login" element={<Login onLogin={setUser} />} />
             <Route path="/product" element={<Product />} />
             <Route path="/products/:id" element={<SingleProduct />} />
+            {/* <Route path="/adminProfile" element={<AdminProfile />} /> */}
+            {/* <Route path="/cart" element={<Cart />} /> */}
+            {/* <Route path="/checkout" element={<Checkout />} /> */}
+          </Routes>
+        )
+        }
+        {admin ? (
+          <Routes>
+            <Route path="/login" element={<Login onLogin={setAdmin} />} />
             <Route path="/adminProfile" element={<AdminProfile />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/product" element={<Product />} />
+            <Route path="/products/:id" element={<SingleProduct />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route path="/adminProfile" element={<AdminProfile />} />
           </Routes>
         )}
       </main>
@@ -54,3 +68,63 @@ function App() {
 }
 
 export default App;
+// import Home from "./pages/homepage/Homepage";
+// import Signup from "./pages/signup/Signup";
+// import Login from "./pages/login/Login";
+// import Product from "./pages/products/Products";
+// import UserProfile from "./pages/userProfile/UserProfile";
+// import SingleProduct from "./pages/singleProduct/SingleProduct";
+// import AdminProfile from "./pages/adminProfile/AdminProfile";
+// import Cart from "./pages/cart/Cart";
+// import Checkout from "./pages/checkout/Checkout";
+// import Navbar from "./components/NavBar/NavBar";
+// import { Routes, Route, Navigate } from "react-router-dom";
+// import "./App.css";
+// import { useEffect, useState } from "react";
+
+// function App() {
+//   const [user, setUser] = useState('');
+//   const [admin, setAdmin] = useState('');
+
+//   useEffect(() => {
+//     fetch("/users").then((res) => {
+//       if (res.ok) {
+//         res.json().then((user) => setUser(user))
+//       }
+//     })
+//   }, []);
+
+//   return (
+//     <div>
+//       <Navbar user={user} setUser={setUser} admin={admin} setAdmin={setAdmin} />
+//       <main>
+//         <Routes>
+//           <Route path="/" element={<Home />} />
+//           <Route path="/product" element={<Product />} />
+//           <Route path="/products/:id" element={<SingleProduct />} />
+//           <Route path="/cart" element={<Cart />} />
+//           <Route path="/checkout" element={<Checkout />} />
+
+//           {user ? (
+//             <Routes>
+//             <Route path="/userProfile" element={<UserProfile />} />
+//             </Routes>
+//           ) : (
+//             <Routes>
+//             <Route path="/signup" element={<Signup onSignup={setUser} />} />
+//             <Route path="/login" element={<Login onLogin={setUser} />} />
+//             </Routes>
+//           )}
+
+//           {admin ? (
+//             <Route path="/adminProfile" element={<AdminProfile />} />
+//           ) : (
+//             <Navigate to="/" />
+//           )}
+//         </Routes>
+//       </main>
+//     </div>
+//   );
+// }
+
+// export default App;
