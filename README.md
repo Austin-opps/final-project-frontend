@@ -1,12 +1,38 @@
-# EASYMART FRONT-END
+# EASYMART COLLECTIONS
 
-Welcome to easymart webapplication. This application runs on Ruby on rails for backend and React for frontend. 
-In regards to backend routing, below here are pages that corresponds to the routes.
+Welcome to easymart web application. This application runs on Ruby on rails for backend and React for frontend. 
+Easymart is an online shop where consumers can browse their products of interest, select products and pay for the products and then the products can be delivered to customers.
+This application offers a user friendly interface that is easy to navigate through. 
+
+## SETUP
+
+To get started;
+1. Clone this repository in your local machine.
+
+2. Run `npm install` in the terminal to install dependencies
+
+3. Run `npm start` to run the application in browser. 
+
+The browser will take you to home page which is our landing page. Then a user can navigate through different pages available in our platform.
+
+When you are  taken to the home page, you as a user you can be able to view products but you will be 
+limited to add products to cart before you sign up or if you have already signed up, you should log in 
+to access the cart and checkout process. 
+
+## PAGES
+You would be required to create an account, in the navigation bar, there is a link that will take you to 
+sign up page.  Afterward you will be redirected to the home page. All the pages will be visible through 
+the links on the navigation bar including a user profile page where you can see your details. You can 
+now interact with the application.
+
+When you are done shopping, you can logout to end the session but your details will be store in our 
+database. Whenever you come back you would only be required to log in using your email and name, then from there you can access all the pages again.
 
 ## ENDPOINTS
 1. `POST /signup`; This is where a user creates an account for them to be able to shop.
 
-2. `POST /login`; If a user already has an account, he/she will just be required to insert their email and name and then they will be logged back to session.
+2. `POST /login`; If a user already has an account, he/she will just be required to insert their email 
+and name and then they will be logged back to session.
 
 3. `get/products`; A user is able to view all the products that have been posted including their prices and description.
 
@@ -32,13 +58,5 @@ In regards to backend routing, below here are pages that corresponds to the rout
 
 14. `DELETE /testimonials`; A user is able to delete their comments/reviews/testimonials but they are limited to delete other users reviews.
 
+> Some of the pages are hidden from users and they are only accessed by an admin.
 
-## SETUP
-
-To get started;
-
-1. do `npm install`
-
-2. do ` npm start` to run in browser. 
-
-The browser will have a home page which is our landing page. Then a user can navigate through different pages available in our platform.
