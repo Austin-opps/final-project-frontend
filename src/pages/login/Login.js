@@ -14,7 +14,10 @@ function Login({ onLogin }) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+     setError(data[0].error)
 
+    const token = localStorage.getItem("jwt");
+              
     async function handleSubmit(e) {
         e.preventDefault();
 
@@ -31,7 +34,8 @@ function Login({ onLogin }) {
             const response = await fetch('/login', {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                      Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify({
                     name: username,

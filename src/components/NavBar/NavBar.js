@@ -14,15 +14,14 @@ import './NavBar.css'
 function NavBar({user,setUser, admin,setAdmin}){
     const navigate = useNavigate()
     function handleLogout(){
-        fetch('/logout',{
-            method: "DELETE"
-        })
-        .then(()=>{
         setUser()
+        localStorage.removeItem('jwt');
+
         setAdmin()
         navigate('/')
-        console.log('blank');
-    })
+        
+        console.log('logged_out');
+    
     }
 
     const [cartItems, setCartItems] = useState([]);
