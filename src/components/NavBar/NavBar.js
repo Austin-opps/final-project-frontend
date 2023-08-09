@@ -11,11 +11,13 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 import './NavBar.css'
 
-function NavBar({user,setUser}){
+function NavBar({user,setUser, admin,setAdmin}){
     const navigate = useNavigate()
     function handleLogout(){
         setUser()
         localStorage.removeItem('jwt');
+
+        setAdmin()
         navigate('/')
         
         console.log('logged_out');
@@ -86,13 +88,26 @@ function NavBar({user,setUser}){
                         </>
                         ) : (
                         <>
-                            <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
+                            {/* <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink> */}
                             <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
                             <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink>
-                            <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink>
+                            {/* <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink> */}
                         </>
 
-                        )}
+                        )} 
+                        { admin ? (
+                            <>
+                                <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
+                                <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout</NavLink>
+                            </>
+                        ) : (
+
+                        
+                            <>
+                                {/* <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
+                                <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink> */}
+                            </>
+                       ) }
                     </div>
             </div>
             </div>
