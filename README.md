@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# EASYMART COLLECTIONS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Welcome to easymart web application. This application runs on Ruby on rails for backend and React for frontend. 
+Easymart is an online shop where consumers can browse their products of interest, select products and pay for the products and then the products can be delivered to customers.
+This application offers a user friendly interface that is easy to navigate through. 
 
-## Available Scripts
+## SETUP
 
-In the project directory, you can run:
+To get started;
+1. Clone this repository in your local machine.
 
-### `npm start`
+2. Run `npm install` in the terminal to install dependencies
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. Run `npm start` to run the application in browser. 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The browser will take you to home page which is our landing page. Then a user can navigate through different pages available in our platform.
 
-### `npm test`
+When you are  taken to the home page, you as a user you can be able to view products but you will be 
+limited to add products to cart before you sign up or if you have already signed up, you should log in 
+to access the cart and checkout process. 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## PAGES
+You would be required to create an account, in the navigation bar, there is a link that will take you to 
+sign up page.  Afterward you will be redirected to the home page. All the pages will be visible through 
+the links on the navigation bar including a user profile page where you can see your details. You can 
+now interact with the application.
 
-### `npm run build`
+When you are done shopping, you can logout to end the session but your details will be store in our 
+database. Whenever you come back you would only be required to log in using your email and name, then from there you can access all the pages again.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## ENDPOINTS
+1. `POST /signup`; This is where a user creates an account for them to be able to shop.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. `POST /login`; If a user already has an account, he/she will just be required to insert their email 
+and name and then they will be logged back to session.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. `get/products`; A user is able to view all the products that have been posted including their prices and description.
 
-### `npm run eject`
+4. `patch/product/:id`; Admin is able to update on an existing product, either to adjust prices, name o description.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+5. `delete/products/:id`; Also an admin has ability to delete a certain product. This may be due different occurences or if the item is out of stock.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+6. `post/product`; AN admin has ability to create/post a product on the products list for users to be able to view new products in the market.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+7. `get/product:id`; an admin and also a user is able to view one particular product. For admin he/she has more options to update or delete the product while the user is only limited to view and adding it to cart.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+8. `get/cart`; The cart is purposely designated to be used by the user. a user checks items he/she placed/picked to cart, then proceeds to do final payments.
 
-## Learn More
+9. `DELETE /logout`; The user that has an account, after being logged into session, after doing shopping he/she proceeds to logout (delete the session) but they can login with their initial details during signup process.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+10. `POST /cart`; A user is allowed to pick/select products of their choice and add them to cart.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+11. `PATCH /cart`; A user may need to adjust items in the cart, either increase quantity of a product or remove a product from the cart.
 
-### Code Splitting
+12. `GET /testimonials`; A user is able to view reviews/comments/testimonials left by other users regarding a certain product.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+13. `POST /testimonials`; A user is able to write how they feel about a product and post their feeling in form of a comment that will be displayed to other users.
 
-### Analyzing the Bundle Size
+14. `DELETE /testimonials`; A user is able to delete their comments/reviews/testimonials but they are limited to delete other users reviews.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+> Some of the pages are hidden from users and they are only accessed by an admin.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
