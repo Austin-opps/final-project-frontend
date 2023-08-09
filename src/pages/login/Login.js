@@ -15,12 +15,16 @@ function Login({onLogin}){
     const[error,setError] = useState("")
 
     const navigate = useNavigate()
+
+    const token = localStorage.getItem("jwt");
+
     async function handleSubmit(e){
         e.preventDefault()
       const response = await fetch('/login',{
             method:"POST",
             headers:{
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
             },
             body:JSON.stringify({
                 name:username,
@@ -30,7 +34,7 @@ function Login({onLogin}){
         const data = await response.json()
         if(response.ok){
             onLogin(data);
-            console.log('Login',data);
+            console.log('Logded_in');
             navigate('/')
         }else{
             setError(data[0].error)
