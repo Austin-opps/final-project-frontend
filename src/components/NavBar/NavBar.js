@@ -14,14 +14,12 @@ import './NavBar.css'
 function NavBar({user,setUser}){
     const navigate = useNavigate()
     function handleLogout(){
-        fetch('/logout',{
-            method: "DELETE"
-        })
-        .then(()=>{
         setUser()
+        localStorage.removeItem('jwt');
         navigate('/')
-        console.log('blank');
-    })
+        
+        console.log('logged_out');
+    
     }
 
     const [cartItems, setCartItems] = useState([]);
@@ -61,7 +59,7 @@ function NavBar({user,setUser}){
                     <img className="logo-img" src={facebook}  alt="facebook" />
                     <img className="logo-img" src={instagram} alt="instagram" />
                     <img className="logo-img" src={twitter}  alt="twitter" />
-                    <img className="logo-img" src={twitter}  alt="twitter" />
+                    <img className="logo-img" src={youtube}  alt="youtube" />
             </div>
         </div>
         <nav className="navbar navbar-expand-lg navbar-expand-md">
