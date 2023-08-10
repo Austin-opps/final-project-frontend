@@ -13,15 +13,14 @@ import './NavBar.css'
 
 function NavBar({user,setUser, admin,setAdmin}){
     const navigate = useNavigate()
-    function handleLogout(){
-        setUser()
-        localStorage.removeItem('jwt');
 
-        setAdmin()
+    function handleLogout(){
+        setUser(null)
+        setAdmin(null)
         navigate('/')
+        localStorage.removeItem('jwt');
         
         console.log('logged_out');
-    
     }
 
     const [cartItems, setCartItems] = useState([]);
@@ -38,17 +37,17 @@ function NavBar({user,setUser, admin,setAdmin}){
     return(
         <>
         <div className="row bg-black mx-auto info-bar">
-            <div class="col-md-4 col-sm-6 col-12 d-flex">
+            <div class="col-md-4 col-sm-6 col-12 d-flex  pb-1">
                 <div class="d-flex align-items-center col-md-6 col-sm-6 col-12 ">
                     <img src={telephone} class="img-fluid telephone logo-img" alt="phone number" />
-                    <div><p className=" mb-0 text-white">(+254) 710 605 821</p></div>
+                    <div><p className=" mb-0 text-white ">(+254) 710 605 821</p></div>
                 </div>
                 <div class="d-flex align-items-center col-md-6 col-sm-6 col-12">
                     <img src={email} class="img-fluid telephone logo-img" alt="phone number" />
                     <p className=" mb-0 text-white">easymart@example.com</p>
                 </div>
             </div>
-            <div className="col-md-3 col-sm-4 col-12 mx-auto">
+            <div className="col-md-3 col-sm-4 col-12 mx-auto pt-2">
                 { user ? (
                         <p className="text-white "><small>Welcome user</small></p>
                 ) : (

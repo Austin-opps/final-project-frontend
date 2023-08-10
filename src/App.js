@@ -17,11 +17,13 @@ function App() {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-    fetch("/users").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => setUser(user))
-      }
-    })
+    const loggedInUser = localStorage.getItem("user");
+    console.log('loggedInUser',loggedInUser);
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      console.log('foundUser',foundUser);
+      setUser(foundUser);
+    }
   }, []);
 
   return (

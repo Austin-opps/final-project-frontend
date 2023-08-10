@@ -37,7 +37,7 @@ function Signup({onSignup}){
         if(response.ok){
             onSignup(data)
             localStorage.setItem("jwt", data.jwt);
-            console.log('data',data);
+            console.log('data',data.jwt);
             nav('/')
         }else{
             setErrors(data.errors)
