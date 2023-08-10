@@ -7,27 +7,26 @@ import twitter from '../../assets/twitter.png'
 import youtube from '../../assets/youtube.png'
 import cart from '../../assets/shopping-cart.png'
 import userIcon from '../../assets/user-icon.png'
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 import './NavBar.css'
 
-function NavBar({user,setUser, admin,setAdmin}){
-    const navigate = useNavigate()
-    function handleLogout(){
-        setUser()
-        localStorage.removeItem('jwt');
+function NavBar({user,setUser,setLogged, isLoggedIn}){
 
-        setAdmin()
-        navigate('/')
-        
+
+    function handleLogout(){
+        sessionStorage.removeItem('jwt');
+        sessionStorage.removeItem('user_id');
+        setUser(null)
+        setLogged(false)
+        window.location.href = '/'
         console.log('logged_out');
-    
     }
 
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
-      const storedCartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
+      const storedCartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
       setCartItems(storedCartItems.map(item => ({ ...item, quantity: 1 })));
     }, []);
   
@@ -38,23 +37,26 @@ function NavBar({user,setUser, admin,setAdmin}){
     return(
         <>
         <div className="row bg-black mx-auto info-bar">
-            <div class="col-md-4 col-sm-6 col-12 d-flex">
+            <div class="col-md-4 col-sm-6 col-12 d-flex  pb-1">
                 <div class="d-flex align-items-center col-md-6 col-sm-6 col-12 ">
                     <img src={telephone} class="img-fluid telephone logo-img" alt="phone number" />
-                    <div><p className=" mb-0 text-white">(+254) 710 605 821</p></div>
+                    <div><p className=" mb-0 text-white ">(+254) 710 605 821</p></div>
                 </div>
                 <div class="d-flex align-items-center col-md-6 col-sm-6 col-12">
                     <img src={email} class="img-fluid telephone logo-img" alt="phone number" />
                     <p className=" mb-0 text-white">easymart@example.com</p>
                 </div>
             </div>
-            <div className="col-md-3 col-sm-4 col-12 mx-auto">
-                { user ? (
-                        <p className="text-white "><small>Welcome user</small></p>
-                ) : (
-                    <p className="text-white"><small>sign in for variety of products from our shop</small></p>
-                )}
-                
+            <div className="col-md-3 col-sm-4 col-12 mx-auto pt-2">
+                { user && isLoggedIn && !user.isAdmin &&
+                        <p className="text-white "><small>Welcome { user.name}</small></p>
+                }
+                { user.isAdmin && isLoggedIn &&
+                        <p className="text-white "><small>Welcome { user.name}</small></p>
+                }
+                { !user &&
+                         <p className="text-white"><small>sign in for variety of products from our shop</small></p>
+                }
             </div>
             <div className="col-md-3 col-sm-4 col-12 d-flex">
                 <p className="text-white pt-2 mb-0 ">Follow us:</p>
@@ -77,39 +79,35 @@ function NavBar({user,setUser, admin,setAdmin}){
                     </div>
                     <div className="nav-item navbar-nav ml-auto">
                         
-                        { user ? (
+                        { !user.isAdmin && isLoggedIn && user &&
                         <>
-                            <NavLink  className={"nav-link"} to='/userProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> User</NavLink>
+                            <NavLink  className={"nav-link"} to='/userProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> {user.name}</NavLink>
                             <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout</NavLink>
                             <NavLink className="nav-link" to="/cart">
                             <img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}
                             </NavLink>
 
-                        </>
-                        ) : (
-                        <>
+                        </> } 
+
+                        { user.isAdmin === true && isLoggedIn &&
+                            <>
+                                <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
+                                <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout </NavLink>
+                            </>
+                         }
+
+                        { !isLoggedIn && !user &&
+                            <>
                             {/* <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink> */}
                             <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
                             <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink>
                             {/* <NavLink  className={"nav-link"} to='/cart'><img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}</NavLink> */}
-                        </>
-
-                        )} 
-                        { admin ? (
-                            <>
-                                <NavLink  className={"nav-link"} to='/adminProfile'><img src={userIcon} className="m-0 logo-img" alt="user-icon"/> Admin </NavLink>
-                                <NavLink  className={"nav-link"} type="button" onClick={handleLogout}>Logout</NavLink>
                             </>
-                        ) : (
-
-                        
-                            <>
-                                {/* <NavLink  className={"nav-link"} to='/signup'>SignUp</NavLink>
-                                <NavLink  className={"nav-link"} to='/login'>LogIn</NavLink> */}
-                            </>
-                       ) }
+                        }
+                      
+                       
                     </div>
-            </div>
+             </div>
             </div>
         </nav>
         </>
