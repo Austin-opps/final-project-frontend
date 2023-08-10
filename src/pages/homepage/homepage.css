@@ -22,19 +22,33 @@
 }
 .shop-btn{
   border-radius: 30px;
-  border: 1px solid black;
+  
   color: black;
 
 }
 .categories{
-  height: 300px;
-  width:  200px;
+  height: 230px;
+  width:  150px;
+  position: relative;
 }
 .category-img{
   object-fit: cover;
   max-width: 100%;
   max-height: 100%;
 }
+.text-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  display: none;
+}
+
 #home-card{
   border-radius: 25px
 }

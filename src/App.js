@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from 'react';
 import Home from "./pages/homepage/Homepage";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
@@ -10,121 +11,70 @@ import Checkout from "./pages/checkout/Checkout";
 import Navbar from "./components/NavBar/NavBar";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { useEffect, useState } from "react";
+
 
 function App() {
   const[user, setUser] = useState('');
-  const [admin, setAdmin] = useState(false);
+  const[isLoggedIn,setIsLoggedIn] = useState(false)
+
+
+const App = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setUser] = useState(null);
 
   useEffect(() => {
-    fetch("/users").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => setUser(user))
-      }
-    })
+    const token = sessionStorage.getItem("jwt");
+    const user_id = sessionStorage.getItem("user_id");
+    
+    // if (token && user_id) {
+      const fetchUser = async () => {
+          const resp = await fetch(`/users/${user_id}`, {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
+            }
+          });
+          const data = await resp.json();
+          
+          if (resp.ok) {
+            setUser(data); // Assuming that the user data is returned by the API
+            setIsLoggedIn(true);
+            console.log("currentUser", data);
+          } else {
+            setIsLoggedIn(false);
+          }
+      };
+      fetchUser();
+    // } else {
+    //   setIsLoggedIn(false);
+    // }
   }, []);
+
+  // Your component JSX and other code here
+};
+
+
+  
 
   return (
     <div>
-      <Navbar user={user} setUser={setUser} admin={admin} setAdmin={setAdmin} />
+      <Navbar user={user} setUser={setUser} isLoggedIn={isLoggedIn}  setLogged={setIsLoggedIn}/>
       <main>
-        {user ? (
-          <Routes>
+
+      <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/product" element={<Product />} />
-            <Route path="/userProfile" element={<UserProfile />} />
+            <Route path="/userProfile" element={user ? <UserProfile /> : <Home />} />
             <Route path="/products/:id" element={<SingleProduct />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/cart" element={user ? <Cart /> : <Home />} />
+            <Route path="/checkout" element={user ? <Checkout /> : <Home />} />
             <Route path="/signup" element={<Signup onSignup={setUser} />} />
-            <Route path="/login" element={<Login onLogin={setUser} />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/products/:id" element={<SingleProduct />} />
-            {/* <Route path="/adminProfile" element={<AdminProfile />} /> */}
-            {/* <Route path="/cart" element={<Cart />} /> */}
-            {/* <Route path="/checkout" element={<Checkout />} /> */}
+            <Route path="/login" element={<Login onLogin={setUser} setLogged={setIsLoggedIn}/>} />
+            <Route path="/adminProfile" element={user ? <AdminProfile /> : <Home />} />
           </Routes>
-        )
-        }
-        {admin ? (
-          <Routes>
-            <Route path="/login" element={<Login onLogin={setAdmin} />} />
-            <Route path="/adminProfile" element={<AdminProfile />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/products/:id" element={<SingleProduct />} />
-          </Routes>
-        ) : (
-          <Routes>
-            <Route path="/adminProfile" element={<AdminProfile />} />
-          </Routes>
-        )}
       </main>
     </div>
   );
 }
 
 export default App;
-// import Home from "./pages/homepage/Homepage";
-// import Signup from "./pages/signup/Signup";
-// import Login from "./pages/login/Login";
-// import Product from "./pages/products/Products";
-// import UserProfile from "./pages/userProfile/UserProfile";
-// import SingleProduct from "./pages/singleProduct/SingleProduct";
-// import AdminProfile from "./pages/adminProfile/AdminProfile";
-// import Cart from "./pages/cart/Cart";
-// import Checkout from "./pages/checkout/Checkout";
-// import Navbar from "./components/NavBar/NavBar";
-// import { Routes, Route, Navigate } from "react-router-dom";
-// import "./App.css";
-// import { useEffect, useState } from "react";
-
-// function App() {
-//   const [user, setUser] = useState('');
-//   const [admin, setAdmin] = useState('');
-
-//   useEffect(() => {
-//     fetch("/users").then((res) => {
-//       if (res.ok) {
-//         res.json().then((user) => setUser(user))
-//       }
-//     })
-//   }, []);
-
-//   return (
-//     <div>
-//       <Navbar user={user} setUser={setUser} admin={admin} setAdmin={setAdmin} />
-//       <main>
-//         <Routes>
-//           <Route path="/" element={<Home />} />
-//           <Route path="/product" element={<Product />} />
-//           <Route path="/products/:id" element={<SingleProduct />} />
-//           <Route path="/cart" element={<Cart />} />
-//           <Route path="/checkout" element={<Checkout />} />
-
-//           {user ? (
-//             <Routes>
-//             <Route path="/userProfile" element={<UserProfile />} />
-//             </Routes>
-//           ) : (
-//             <Routes>
-//             <Route path="/signup" element={<Signup onSignup={setUser} />} />
-//             <Route path="/login" element={<Login onLogin={setUser} />} />
-//             </Routes>
-//           )}
-
-//           {admin ? (
-//             <Route path="/adminProfile" element={<AdminProfile />} />
-//           ) : (
-//             <Navigate to="/" />
-//           )}
-//         </Routes>
-//       </main>
-//     </div>
-//   );
-// }
-
-// export default App;
