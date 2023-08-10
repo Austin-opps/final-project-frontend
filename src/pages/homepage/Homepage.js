@@ -39,9 +39,9 @@ function Body() {
         </div>
         <div className=" col-12">
           <div className="row container-fluid d-flex justify-content-around  mx-auto border">
-            <div className="col-md-3 col-sm-4 col-4 categories  flex-item"><img className="category-img img-fluid" src={shoe} alt="sample" /></div>
-            <div className="col-md-3 col-sm-4 col-4 categories  flex-item"><img className="category-img img-fluid" src={cologneBottle} alt="sample1" /></div>
-            <div className="col-md-3 col-sm-4 col-4 categories  flex-item"><img className="category-img img-fluid" src={sweater} alt="sample2" /></div> 
+            <div className="col-md-3 col-sm-4 col-4 categories  flex-item"><img className="category-img img-fluid" src={shoe} alt="sample" /><h4 className="text-overlay text-center">Shoes</h4></div>
+            <div className="col-md-3 col-sm-4 col-4 categories  flex-item"><img className="category-img img-fluid" src={cologneBottle} alt="sample1" /> </div>
+            <div className="col-md-3 col-sm-4 col-4 categories  flex-item"><img className="category-img img-fluid" src={sweater} alt="sample2" /> </div> 
           </div>
         </div>
         </div>

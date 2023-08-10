@@ -14,7 +14,6 @@ function Login({ onLogin }) {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
-     setError(data[0].error)
 
     const token = localStorage.getItem("jwt");
               
@@ -48,6 +47,7 @@ function Login({ onLogin }) {
             if (response.ok) {
                 onLogin(data);
                 console.log('Login', data);
+                localStorage.setItem("jwt", data.jwt);
                 navigate('/');
             } else {
                 setError(data[0].error);
