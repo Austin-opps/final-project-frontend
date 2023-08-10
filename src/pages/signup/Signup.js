@@ -30,14 +30,16 @@ function Signup({onSignup}){
                 email,
                 password,
                 password_confirmation: passwordConfirmation,
-                profile_picture: profilePicture
+                profile_picture: profilePicture,
+                isAdmin: false
             })
         })
         const data =  await response.json()
         if(response.ok){
-            onSignup(data)
-            localStorage.setItem("jwt", data.jwt);
-            console.log('data',data.jwt);
+            onSignup(data.user)
+            sessionStorage.setItem("jwt", data.jwt);
+            sessionStorage.setItem("user", data.user);
+            console.log('data',data.user);
             nav('/')
         }else{
             setErrors(data.errors)
