@@ -9,50 +9,48 @@ import tweet from '../../assets/twitter1.png'
 import ytube from '../../assets/youtube1.png'
 import './login.css'
 
-function Login({ onLogin }) {
+function Login({ onLogin,setLogged }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
 
-    const token = localStorage.getItem("jwt");
+    const token = sessionStorage.getItem("jwt");
               
     async function handleSubmit(e) {
         e.preventDefault();
 
-        if (username === "admin" && password === "password") {
-            // Log in as an admin
-            const adminData = {
-                name: "admin",
-                role: "admin"  // You can add more data as needed
-            };
-            onLogin(adminData);
-            navigate('/adminProfile');
+        
+        const response = await fetch('/login', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                name: username,
+                password
+            })
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            onLogin(data.user);
+            console.log('Login', data.user);
+            sessionStorage.setItem("jwt", data.jwt);
+            sessionStorage.setItem("user_id", data.user.id);
+            console.log('jwt',data.jwt);
+            console.log('user',data.user.id);
+            setLogged(true)
+            navigate('/');
         } else {
-            // Log in as a user
-            const response = await fetch('/login', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                      Authorization: `Bearer ${token}`
-                },
-                body: JSON.stringify({
-                    name: username,
-                    password
-                })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                onLogin(data);
-                console.log('Login', data);
-                localStorage.setItem("jwt", data.jwt);
-                navigate('/');
-            } else {
-                setError(data[0].error);
-            }
+            setError(data[0].error);
         }
+
+            // onLogin(adminData);
+            // navigate('/adminProfile');
+
     }
     return(
                 <>

@@ -135,7 +135,7 @@ function AdminProfile() {
   };
   return (
     <div>
-      <div className="row p-3">
+      <div className="row p-3 container-fluid m-4 ">
         <div className="col-11 col-md-8 col-sm-10 text-center mx-auto">
           <input
             type="text"
