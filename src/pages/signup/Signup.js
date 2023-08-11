@@ -7,8 +7,10 @@ import fb from '../../assets/facebook1.png'
 import ig from '../../assets/instagram1.png'
 import tweet from '../../assets/twitter1.png'
 import ytube from '../../assets/youtube1.png'
+import { useNavigate } from "react-router-dom";
 import './signup.css'
-function Signup({onSignup}){
+function Signup({onSignup, setLogged}){
+    const nav = useNavigate()
     const[username,setUsername] = useState("")
     const[email,setEmail] = useState("")
     const[password,setPassword] = useState("")
@@ -28,13 +30,23 @@ function Signup({onSignup}){
                 email,
                 password,
                 password_confirmation: passwordConfirmation,
-                profile_picture: profilePicture
+                profile_picture: profilePicture,
+                isAdmin: false
             })
         })
         const data =  await response.json()
         if(response.ok){
-            onSignup(data)
-            console.log('data',data);
+            onSignup(data.user)
+            console.log(data);
+            sessionStorage.setItem("jwt", data.jwt);
+            sessionStorage.setItem("user_id", data.user.id);
+            setLogged(true)
+            console.log('data',data.user.id);
+           if(data.user.isAdmin===null ||data.user.isAdmin ===false){
+            nav('/')
+           }else{
+            nav('/adminProfile')
+           }
         }else{
             setErrors(data.errors)
         }
@@ -81,7 +93,7 @@ function Signup({onSignup}){
             <button type="submit" className="btn btn-primary col-md-10 col-10 col-sm-10 m-2">Submit</button>
             <a href='/login' className='nav-link col-7 mx-auto mt-2'><small>Already have an account ?</small></a>
             </form>
-            <div className="col-md-6 d-sm-block">
+            <div className="col-md-6 d-sm-block ">
                 <img src={clothesLine} className="img-fluid signup-image rounded" alt="signup" />
             </div>
          </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import ProductCard from "../ProductCard/ProductCard";
+// import './products.css'
 
 const Product = () => {
   const [products, setProducts] = useState([]);
@@ -10,7 +12,7 @@ const Product = () => {
   useEffect(() => {
     fetch("/products")
       .then((response) => response.json())
-      .then((data) => setProducts(data))
+      .then((data) => {setProducts(data)}) 
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
 
@@ -33,79 +35,43 @@ const Product = () => {
     indexOfLastProduct
   );
 
+
+  
+  //set route to single product
+    const navigate  = useNavigate()
+
+ 
   return (
-    <div>
-      <h1>Products</h1>
-      <div>
-        <input
+    <div className="container-fluid">
+      <div className=" p-4 col-8 co-md-4 col-sm-8 mx-auto d-flex justify-content-center">
+        <input className="form-control"
           type="text"
           placeholder="Search products by category or name..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
-        <button onClick={handleSearch}>Search</button>
+        <button className="btn border " onClick={handleSearch}>Search</button>
       </div>
-      <div style={gridContainerStyle}>
-        {currentProducts.map((product) => (
-          <Link
-            to={`/products/${product.id}`}
-            key={product.id}
-            style={productLinkStyle}
-          >
-            <div style={productCardStyle}>
-              <h2>
-                {product.name.substring(0, 30)}
-                {product.name.length > 30 ? "..." : ""}
-              </h2>
-              <img src={product.image} alt={product.name} style={imageStyle} />
-              <p>
-                {product.description.substring(0, 30)}
-                {product.description.length > 30 ? "..." : ""}
-              </p>
-              <p>Price: Ksh.{Math.round(product.price)}</p>
-            </div>
-          </Link>
-        ))}
-      </div>
-      <div>
+      
+      <div className="product-container row d-flex flex-wrap justify-content-center">
+        {currentProducts.map((product)=>(
+          <ProductCard key={product.id} product={product} navigate={navigate} />
+        )) 
+        }
+     </div>
+     {/* bootstrap cards */}
+
+      <div className="row p-5">
         {/* Pagination controls */}
-        <button onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>
-          Previous
-        </button>
-        <button onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>
-          Next
-        </button>
+        <div className="col-5 mx-auto d-flex justify-content-center">
+        <button className="btn shadow border btn-dark" onClick={() => setCurrentPage((prevPage) => prevPage - 1)}>Previous</button>
+        <button className="btn shadow border btn-dark" onClick={() => setCurrentPage((prevPage) => prevPage + 1)}>Next</button>
+        </div>
+
       </div>
     </div>
   );
 };
 
-const gridContainerStyle = {
-  display: "grid",
-  gridTemplateColumns: "repeat(4, 1fr)", // Create a grid layout with four columns
-  gridGap: "20px",
-  display: "grid",
-  gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))", // Adjusted grid columns to fit the screen size
-  gridGap: "20px",
-};
-
-const productCardStyle = {
-  border: "1px solid #ccc",
-  padding: "10px",
-  textAlign: "center",
-  width: "100%", // Adjusted width to take the whole available space within each column
-  maxWidth: "400px", // Set a maximum width for product cardsn
-};
-
-const productLinkStyle = {
-  textDecoration: "none",
-  color: "inherit",
-};
-
-const imageStyle = {
-  maxWidth: "100%",
-  maxHeight: "200px", // Set a maximum height for the product images
-  objectFit: "cover", // Maintain aspect ratio and cover the container
-};
 
 export default Product;

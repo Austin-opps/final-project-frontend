@@ -1,19 +1,9 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Barlow&family=Outfit&family=Playfair&family=REM&display=swap');
+
 main{
   background-color: #F6F6F6;
+
+   font-family: REM, sans-serif;;
 }
 
-/* Media query for smaller devices like smartphones */
-@media (max-width: 768px) {
-  /* You can add any other specific styles for smaller devices here */
-}
-
-/* Media query for tablets and larger devices */
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* Take half width on tablets */
-  /* You can add any other specific styles for tablets here */
-}
-
-/* Media query for larger screens like desktops and laptops */
-@media (min-width: 1024px) {
-  /* You can add any specific styles for larger screens here */
-}

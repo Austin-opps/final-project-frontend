@@ -1,8 +1,9 @@
+.info-bar{
+    height: 30px;
+    font-size: 15px;
+}
 .logo-img{
     width: 20px;
     height: 20px;
     margin: 10px;
-}
-.navbar{
-    background-color:#F6CECE;
 }

@@ -8,48 +8,66 @@ import AdminProfile from "./pages/adminProfile/AdminProfile";
 import Cart from "./pages/cart/Cart";
 import Checkout from "./pages/checkout/Checkout";
 import Navbar from "./components/NavBar/NavBar";
-import Footer from "./components/footer/Footer";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import { useEffect, useState } from "react";
 
-function App() {
-  const [user, setUser] = useState("");
 
+function App() {
+  const[user, setUser] = useState('');
+  const[isLoggedIn,setIsLoggedIn] = useState(false)
+
+  
   useEffect(() => {
-    fetch("/users").then((res) => {
-      if (res.ok) {
-        res.json().then((user) => setUser(user));
-      }
-    });
+    const token = sessionStorage.getItem("jwt");
+    const user_id = sessionStorage.getItem("user_id");
+  
+    if (token && user_id) {
+      const id = parseInt(user_id);
+  
+      fetch(`/users/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((resp) => resp.json())
+        .then((current_user) => {
+          if (current_user) {
+            setUser(current_user);
+            setIsLoggedIn(true);
+
+          } else {
+            setIsLoggedIn(false);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          setIsLoggedIn(false);
+        });
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
+  
+
+
   return (
     <div>
-      <Navbar user={user} setUser={setUser} />
+      <Navbar user={user} setUser={setUser} isLoggedIn={isLoggedIn}  setLogged={setIsLoggedIn}/>
       <main>
-        {user ? (
-          <Routes>
+      <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/userProfile" element={<UserProfile />} />
+            <Route path="/product" element={ <Product /> } />
+            <Route path="/userProfile" element={user ? <UserProfile /> : <Home />} />
             <Route path="/products/:id" element={<SingleProduct />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/cart" element={user ? <Cart /> : <Home />} />
+            <Route path="/checkout" element={user ? <Checkout /> : <Home />} />
+            <Route path="/signup" element={<Signup onSignup={setUser} setLogged={setIsLoggedIn}/>} />
+            <Route path="/login" element={<Login onLogin={setUser} setLogged={setIsLoggedIn}/>} />
+            <Route path="/adminProfile" element={user ? <AdminProfile /> : <Home />} />
           </Routes>
-        ) : (
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/signup" element={<Signup onSignup={setUser} />} />
-            <Route path="/login" element={<Login onLogin={setUser} />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/products/:id" element={<SingleProduct />} />
-            <Route path="/adminProfile" element={<AdminProfile />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/checkout" element={<Checkout />} />
-          </Routes>
-        )}
       </main>
-      <Footer />
     </div>
   );
 }
