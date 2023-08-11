@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react';
 import Home from "./pages/homepage/Homepage";
 import Signup from "./pages/signup/Signup";
 import Login from "./pages/login/Login";
@@ -11,50 +10,47 @@ import Checkout from "./pages/checkout/Checkout";
 import Navbar from "./components/NavBar/NavBar";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import { useEffect, useState } from "react";
 
 
 function App() {
   const[user, setUser] = useState('');
   const[isLoggedIn,setIsLoggedIn] = useState(false)
 
-
-const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setUser] = useState(null);
-
+  
   useEffect(() => {
     const token = sessionStorage.getItem("jwt");
     const user_id = sessionStorage.getItem("user_id");
-    
-    // if (token && user_id) {
-      const fetchUser = async () => {
-          const resp = await fetch(`/users/${user_id}`, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`
-            }
-          });
-          const data = await resp.json();
-          
-          if (resp.ok) {
-            setUser(data); // Assuming that the user data is returned by the API
+  
+    if (token && user_id) {
+      const id = parseInt(user_id);
+  
+      fetch(`/users/${id}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+        .then((resp) => resp.json())
+        .then((current_user) => {
+          if (current_user) {
+            setUser(current_user);
             setIsLoggedIn(true);
-            console.log("currentUser", data);
+
           } else {
             setIsLoggedIn(false);
           }
-      };
-      fetchUser();
-    // } else {
-    //   setIsLoggedIn(false);
-    // }
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          setIsLoggedIn(false);
+        });
+    } else {
+      setIsLoggedIn(false);
+    }
   }, []);
-
-  // Your component JSX and other code here
-};
-
-
   
+
 
   return (
     <div>
@@ -63,12 +59,12 @@ const App = () => {
 
       <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/product" element={<Product />} />
+            <Route path=" /product" element={ <Product /> } />
             <Route path="/userProfile" element={user ? <UserProfile /> : <Home />} />
             <Route path="/products/:id" element={<SingleProduct />} />
             <Route path="/cart" element={user ? <Cart /> : <Home />} />
             <Route path="/checkout" element={user ? <Checkout /> : <Home />} />
-            <Route path="/signup" element={<Signup onSignup={setUser} />} />
+            <Route path="/signup" element={<Signup onSignup={setUser} setLogged={setIsLoggedIn}/>} />
             <Route path="/login" element={<Login onLogin={setUser} setLogged={setIsLoggedIn}/>} />
             <Route path="/adminProfile" element={user ? <AdminProfile /> : <Home />} />
           </Routes>

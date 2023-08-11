@@ -12,7 +12,7 @@ const Product = () => {
   useEffect(() => {
     fetch("/products")
       .then((response) => response.json())
-      .then((data) => setProducts(data)) 
+      .then((data) => {setProducts(data);console.log(data);}) 
       .catch((error) => console.error("Error fetching products:", error));
   }, []);
 

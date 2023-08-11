@@ -9,7 +9,7 @@ import tweet from '../../assets/twitter1.png'
 import ytube from '../../assets/youtube1.png'
 import { useNavigate } from "react-router-dom";
 import './signup.css'
-function Signup({onSignup}){
+function Signup({onSignup, setLogged}){
     const nav = useNavigate()
     const[username,setUsername] = useState("")
     const[email,setEmail] = useState("")
@@ -37,10 +37,16 @@ function Signup({onSignup}){
         const data =  await response.json()
         if(response.ok){
             onSignup(data.user)
+            console.log(data);
             sessionStorage.setItem("jwt", data.jwt);
-            sessionStorage.setItem("user", data.user);
-            console.log('data',data.user);
+            sessionStorage.setItem("user_id", data.user.id);
+            setLogged(true)
+            console.log('data',data.user.id);
+           if(data.user.isAdmin===null ||data.user.isAdmin ===false){
             nav('/')
+           }else{
+            nav('/adminProfile')
+           }
         }else{
             setErrors(data.errors)
         }
