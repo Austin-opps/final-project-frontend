@@ -56,10 +56,9 @@ function App() {
     <div>
       <Navbar user={user} setUser={setUser} isLoggedIn={isLoggedIn}  setLogged={setIsLoggedIn}/>
       <main>
-
       <Routes>
             <Route path="/" element={<Home />} />
-            <Route path=" /product" element={ <Product /> } />
+            <Route path="/product" element={ <Product /> } />
             <Route path="/userProfile" element={user ? <UserProfile /> : <Home />} />
             <Route path="/products/:id" element={<SingleProduct />} />
             <Route path="/cart" element={user ? <Cart /> : <Home />} />

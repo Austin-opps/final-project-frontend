@@ -37,13 +37,13 @@ function NavBar({user,setUser,setLogged, isLoggedIn}){
     return(
         <>
         <div className="row bg-black mx-auto info-bar">
-            <div class="col-md-4 col-sm-6 col-12 d-flex  pb-1">
-                <div class="d-flex align-items-center col-md-6 col-sm-6 col-12 ">
-                    <img src={telephone} class="img-fluid telephone logo-img" alt="phone number" />
+            <div className="col-md-4 col-sm-6 col-12 d-flex  pb-1">
+                <div className="d-flex align-items-center col-md-6 col-sm-6 col-12 ">
+                    <img src={telephone} className="img-fluid telephone logo-img" alt="phone number" />
                     <div><p className=" mb-0 text-white ">(+254) 710 605 821</p></div>
                 </div>
-                <div class="d-flex align-items-center col-md-6 col-sm-6 col-12">
-                    <img src={email} class="img-fluid telephone logo-img" alt="phone number" />
+                <div className="d-flex align-items-center col-md-6 col-sm-6 col-12">
+                    <img src={email} className="img-fluid telephone logo-img" alt="phone number" />
                     <p className=" mb-0 text-white">easymart@example.com</p>
                 </div>
             </div>
@@ -68,13 +68,13 @@ function NavBar({user,setUser,setLogged, isLoggedIn}){
         </div>
         <nav className="navbar navbar-expand-lg navbar-expand-md">
             <div className="container-fluid">
-            <NavLink className="navbar-brand fw-bold fs-3 p-0"  exact to='/'>EASYMART </NavLink>
+            <NavLink className="navbar-brand fw-bold fs-3 p-0"   to='/'>EASYMART </NavLink>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="nav-item navbar-nav mx-auto">
-                        <NavLink  className={"nav-link "} exact to='/'>Home </NavLink>
+                        <NavLink  className={"nav-link "}  to='/'>Home </NavLink>
                         <NavLink  className={"nav-link"} to='/product'>Shop</NavLink>
                     </div>
                     <div className="nav-item navbar-nav ml-auto">
