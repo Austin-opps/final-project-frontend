@@ -89,7 +89,7 @@ function Body() {
           <div className="card" id="home-card">
               <div className="card-body">
                 <div className="card-title">
-                  <h4>SAVE <sup>KES<span className="fs-2">1,500</span></sup></h4>
+                  <h4>SAVE <sup>KES<span className="fs-2">300</span></sup></h4>
                 </div>
                 <div className="card-text">
                   <p>Discover our line of size-inclusive essentials across basics, dresses, denim, outerwear, and more</p>
@@ -104,7 +104,7 @@ function Body() {
           <div className="card" id="home-card">
               <div className="card-body">
                 <div className="card-title">
-                  <h4>SAVE <sup>KES<span className="fs-2">1,500</span></sup></h4>
+                  <h4>SAVE <sup>KES<span className="fs-2">800</span></sup></h4>
                 </div>
                 <div className="card-text">
                   <p>Discover our line of size-inclusive essentials across basics, dresses, denim, outerwear, and more</p>

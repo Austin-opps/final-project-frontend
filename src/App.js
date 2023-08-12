@@ -17,6 +17,7 @@ function App() {
   const[user, setUser] = useState('');
   const[isLoggedIn,setIsLoggedIn] = useState(false)
 
+
   
   useEffect(() => {
     const token = sessionStorage.getItem("jwt");
@@ -60,8 +61,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/product" element={ <Product /> } />
             <Route path="/userProfile" element={user ? <UserProfile /> : <Home />} />
-            <Route path="/products/:id" element={<SingleProduct />} />
-            <Route path="/cart" element={user ? <Cart /> : <Home />} />
+            <Route path="/products/:id" element={<SingleProduct  />} />
+            <Route path="/cart" element={user ? <Cart  /> : <Home />} />
             <Route path="/checkout" element={user ? <Checkout /> : <Home />} />
             <Route path="/signup" element={<Signup onSignup={setUser} setLogged={setIsLoggedIn}/>} />
             <Route path="/login" element={<Login onLogin={setUser} setLogged={setIsLoggedIn}/>} />

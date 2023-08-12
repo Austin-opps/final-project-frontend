@@ -1,4 +1,5 @@
-import React,{useEffect, useState} from "react";
+// import React,{useEffect, useState} from "react";
+import React from 'react'
 import telephone from '../../assets/telephone.png'
 import email from '../../assets/email.png'
 import facebook from '../../assets/facebook.png'
@@ -23,15 +24,14 @@ function NavBar({user,setUser,setLogged, isLoggedIn}){
         console.log('logged_out');
     }
 
-    const [cartItems, setCartItems] = useState([]);
-
-    useEffect(() => {
-      const storedCartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
-      setCartItems(storedCartItems.map(item => ({ ...item, quantity: 1 })));
-    }, []);
+    
   
     const getTotalQuantity = () => {
-      return cartItems.reduce((total, item) => total + item.quantity, 0);
+    //   let totalQuantity  = 0
+    //   for (const item of cartItems){
+    //     totalQuantity += item.quantity
+    //   }
+    //   return totalQuantity
     };
    
     return(
@@ -66,7 +66,7 @@ function NavBar({user,setUser,setLogged, isLoggedIn}){
                     <img className="logo-img" src={youtube}  alt="youtube" />
             </div>
         </div>
-        <nav className="navbar navbar-expand-lg navbar-expand-md">
+        <nav className="navbar menu-bar navbar-expand-lg navbar-expand-md">
             <div className="container-fluid">
             <NavLink className="navbar-brand fw-bold fs-3 p-0"   to='/'>EASYMART </NavLink>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,7 +86,6 @@ function NavBar({user,setUser,setLogged, isLoggedIn}){
                             <NavLink className="nav-link" to="/cart">
                             <img className="m-0 logo-img" src={cart} alt="shopping cart" /> {getTotalQuantity()}
                             </NavLink>
-
                         </> } 
 
                         { user.isAdmin === true && isLoggedIn &&

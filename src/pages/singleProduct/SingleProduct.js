@@ -4,11 +4,12 @@ import ImageFullScreen from "../ImageFullScreen/ImageFullScreen";
 import avatar1 from '../../assets/avatar1.png'
 import './singleProduct.css'
 
-const SingleProduct = ({user}) => {
+const SingleProduct = ({user, setCartItems}) => {
   const [product, setProduct] = useState(null);
   const [comments, setComments] = useState([]);
   const [commentMessage, setCommentMessage] = useState("");
-  const[isFullScreen,setIsFullScreen] = useState(false)
+  const[isFullScreen,setIsFullScreen] = useState(false);
+  const[diactivated,setDiacivated] = useState(false);
 
   const { id } = useParams();
 
@@ -27,8 +28,19 @@ const SingleProduct = ({user}) => {
   const addToCart = () => {
     const cartItems = JSON.parse(localStorage.getItem("cartItems")) || [];
     cartItems.push(product);
+    setDiacivated(true)
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
+  // _----------------------------------------------------------------------
+  // function addToCart(itemToAdd) {
+  //   const updatedCartItems = cartItems.map(item => {
+  //       if (item.id === itemToAdd.id) {
+  //           return { ...item, quantity: item.quantity + 1 };
+  //       }
+  //       return item;
+  //   });
+  //   setCartItems(updatedCartItems);
+// -----------------------------------------------------------------
 
   function handlePostComment(e){
     e.preventDefault()
@@ -51,8 +63,6 @@ const SingleProduct = ({user}) => {
     })
     };
 
-    // setComments([...comments, newComment]);
-    // setCommentMessage("");
   
 
   const handleDeleteComment = (commentId) => {
@@ -72,8 +82,8 @@ const SingleProduct = ({user}) => {
   }
   function closeImageFullScreen(){
     setIsFullScreen(false)
-  }
-
+  } 
+  
   return (
     <div className="container  pt-5">
     <div className="product-details bg-white rounded">
@@ -106,7 +116,7 @@ const SingleProduct = ({user}) => {
           <p>{product.description}</p>
           <p className="lead">Price: <span className="ksh"><sub>KES.</sub>{Math.round(product.price)}</span></p>
           <div className="col-12 d-flex justify-content-evenly">
-          <button className="btn btn-success border shadow" onClick={addToCart}>Add to Cart</button>
+          <button className="btn btn-success border shadow" disabled={diactivated} onClick={addToCart}>Add to Cart</button>
           <Link to="/cart">
             <button className="btn  btn-danger shadow ">View Cart</button>
           </Link>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Ruwudu&display=swap');
 .info-bar{
     height: 30px;
     font-size: 15px;
@@ -7,3 +8,15 @@
     height: 20px;
     margin: 10px;
 }
+.nav-link{
+    font-family: 'Ruwudu', serif;
+    font-weight: 400;
+   
+}
+/* .nav-bar NavLink{
+    color: white;   
+}
+.menu-bar{
+    background-color: #00765c;
+    
+} */
