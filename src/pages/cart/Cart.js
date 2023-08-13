@@ -49,9 +49,9 @@ function Cart() {
     return cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
   };
 
-  const getTotalQuantity = () => {
-    return cartItems.reduce((total, item) => total + item.quantity, 0);
-  };
+  // const getTotalQuantity = () => {
+  //   return cartItems.reduce((total, item) => total + item.quantity, 0);
+  // };
 
   return (
     <div style={{ minHeight: "500px" }}>
