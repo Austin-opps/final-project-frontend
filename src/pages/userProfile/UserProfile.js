@@ -4,4 +4,4 @@ function UserProfile(){
         <h2>UserProfile</h2>
     )
 }
-export default UserProfile
+export default UserProfile      
