@@ -6,6 +6,8 @@ This application offers a user friendly interface that is easy to navigate throu
 
 ## SETUP
 
+Demo: `https://main--tubular-sorbet-3e06cc.netlify.app/`
+
 To get started;
 1. Clone this repository in your local machine.
 
